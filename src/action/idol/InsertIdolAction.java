@@ -46,12 +46,11 @@ public class InsertIdolAction implements Action {
 		
 		// 속성값들을 입력
 		for(int i = 1; i < Constants.IDOL_ATTRIBUTE_NUM; i++) {
-			// 사용자 입력 메시지 출력
-			System.out.print(Strings.IDOL_ATTRIBUTES[0][i] + Strings.IDOL_ATTRIBUTES[1][i] + " = ");
-			
 			switch(IdolDBMSUtilities.idolAttrIndexToType(i)) {
 			case Constants.IDOL_ATTRIBUTE_TYPE_INT:
 				while(true) {
+					// 사용자 입력 메시지 출력
+					System.out.print(Strings.IDOL_ATTRIBUTES[0][i] + Strings.IDOL_ATTRIBUTES[1][i] + " = ");
 					
 					// 사용자에게 값을 입력받기
 					strInput = sc.nextLine();
@@ -73,10 +72,17 @@ public class InsertIdolAction implements Action {
 					}
 				}
 				
+				// 작업취소 또는 나머지 속성 생략 명령 검사
+				if(strInput.equals(Strings.COMMAND_SKIP) || strInput.equals(Strings.COMMAND_CANCEL) || strInput.equals(Strings.COMMAND_SKIPALL)) {
+					break;
+				}
+				
 				idolToInsert.getAttrIntegers().put(IdolDBMSUtilities.indexToKey(i), attrInt);
 				break;
 			case Constants.IDOL_ATTRIBUTE_TYPE_STRING:
 				while(true) {
+					// 사용자 입력 메시지 출력
+					System.out.print(Strings.IDOL_ATTRIBUTES[0][i] + Strings.IDOL_ATTRIBUTES[1][i] + " = ");
 					
 					// 사용자에게 값을 입력받기
 					strInput = sc.nextLine();
@@ -92,10 +98,18 @@ public class InsertIdolAction implements Action {
 						System.out.println("입력값이 범위를 벗어났거나 유효하지 않습니다. 다시 입력해 주세요.");
 					}
 				}
+				
+				// 작업취소 또는 나머지 속성 생략 명령 검사
+				if(strInput.equals(Strings.COMMAND_SKIP) || strInput.equals(Strings.COMMAND_CANCEL) || strInput.equals(Strings.COMMAND_SKIPALL)) {
+					break;
+				}
+				
 				idolToInsert.getAttrStrings().put(IdolDBMSUtilities.indexToKey(i), strInput);
 				break;
 			case Constants.IDOL_ATTRIBUTE_TYPE_PLURAL:
 				while(true) {
+					// 사용자 입력 메시지 출력
+					System.out.print(Strings.IDOL_ATTRIBUTES[0][i] + Strings.IDOL_ATTRIBUTES[1][i] + " = ");
 					
 					// 사용자에게 값을 입력받기
 					strInput = sc.nextLine();
@@ -110,6 +124,11 @@ public class InsertIdolAction implements Action {
 					else {
 						System.out.println("입력값이 범위를 벗어났거나 유효하지 않습니다. 다시 입력해 주세요.");
 					}
+				}
+				
+				// 작업취소 또는 나머지 속성 생략 명령 검사
+				if(strInput.equals(Strings.COMMAND_SKIP) || strInput.equals(Strings.COMMAND_CANCEL) || strInput.equals(Strings.COMMAND_SKIPALL)) {
+					break;
 				}
 				
 				switch(i) {
@@ -136,6 +155,7 @@ public class InsertIdolAction implements Action {
 				break;
 			}
 			
+			// 특수 명령 검사 및 처리
 			if(strInput.equals(Strings.COMMAND_CANCEL)) {
 				System.out.println(Strings.CANCEL_NOTICE);
 				return;
