@@ -97,6 +97,21 @@ public class ConsoleViewer {
 	}	// 48
 	
 	/**
+	 * 아이돌 정보 검색 메뉴 출력
+	 */
+	public static void showSearchIdolMenu() {
+		System.out.println("\n======================");
+		System.out.println("    아이돌 정보 검색");
+		System.out.println("----------------------");
+		System.out.println("  1. 일련번호로 검색");
+		System.out.println("  2. 이름으로 검색");
+		System.out.println("  3. 그룹명으로 검색");
+		System.out.println("  4. 유닛명으로 검색");
+		System.out.println("  5. 돌아가기");
+		System.out.println("======================");
+	}
+	
+	/**
 	 * 사용자에게 메뉴 번호를 입력받고 그 번호를 반환
 	 * @param sc : 스캐너 객체
 	 * @param menuId : 메뉴 식별번호
@@ -125,6 +140,9 @@ public class ConsoleViewer {
 			break;
 		case Constants.MENU_ID_SHOWALL:
 			menuNum = Constants.MAX_SHOWALL_MENU;
+			break;
+		case Constants.MENU_ID_SEARCH_IDOL:
+			menuNum = Constants.MAX_SEARCH_IDOL_MENU;
 			break;
 		default:
 			System.err.println("오류 : 잘못된 매개변수입니다.");
@@ -198,7 +216,21 @@ public class ConsoleViewer {
 			// 메뉴 번호에 따른 실행
 			executeAction(mainMenuNo, menu);
 		}
-	}	// 114
+	}
+	
+	/**
+	 * 아이돌 검색 메뉴 실행
+	 */
+	public void runSearchIdolMenu() {
+		while(true) {
+			showSearchIdolMenu();
+			try {
+				//switch(sear)
+			} catch(NumberFormatException ex) {
+				System.out.println("숫자를 입력해 주세요.");
+			}
+		}
+	}
 		
 	/**
 	 * 메인메뉴 번호와 하위메뉴 번호를 받아 해당 액션 실행
@@ -333,6 +365,7 @@ public class ConsoleViewer {
 	}
 }
 
-// 203
+// (203)
 
-// Total : 2 + 3*5 + 3*4 + 3*4 + 97 + 3*5 + 3*4 + 19 + 8 + 6 + 176 + 120 + 8 + 6 + 87 + 15 + 3 + 167 + 203 + 24 = 1007
+// Total : 2 + 3*5 + 3*4 + 3*4 + 97 + 3*5 + 3*4 + 19 + 8 + 6 + 176 + 132 + 8 + 6 + 87 + 15 + 3 + 167 + 203 + 24 = 1019
+

@@ -7,10 +7,8 @@ public class MainProcssor {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-//		ConsoleViewer cv = new ConsoleViewer();
-//		cv.runMainMenu();
-		
-		System.out.println(2 + 3*5 + 3*4 + 3*4 + 97 + 3*5 + 3*4 + 19 + 8 + 6 + 176 + 120 + 8 + 6 + 87 + 15 + 3 + 167 + 203);
+		ConsoleViewer cv = new ConsoleViewer();
+		cv.runMainMenu();
 		
 //		// Test code
 //		String str = "대전광역시";

@@ -52,7 +52,8 @@ public class Constants {
 	public static final int MENU_ID_DELETE = 3;
 	public static final int MENU_ID_UPDATE = 4;
 	public static final int MENU_ID_SEARCH = 5;
-	public static final int MENU_ID_SHOWALL = 6;	// 45
+	public static final int MENU_ID_SHOWALL = 6;
+	public static final int MENU_ID_SEARCH_IDOL = 7;
 	
 	// 메뉴 항목 갯수
 	public static final int MAX_MAIN_MENU = 6;
@@ -61,6 +62,7 @@ public class Constants {
 	public static final int MAX_UPDATE_MENU = 6;
 	public static final int MAX_SEARCH_MENU = 6;
 	public static final int MAX_SHOWALL_MENU = 4;
+	public static final int MAX_SEARCH_IDOL_MENU = 5;
 	
 	// 하위 메뉴 번호
 	public static final int SUBMENU_NUMBER_IDOL = 1;
@@ -109,4 +111,4 @@ public class Constants {
 	public static final int IDOL_ATTRIBUTE_COL_FIRSTPERSON = 21;
 }
 
-// 87
+// (87)

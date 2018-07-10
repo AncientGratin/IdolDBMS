@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 import resources.Constants;
 
@@ -248,6 +249,29 @@ public class IdolDTO {
 	public void setFirstPerson(String firstPerson) {
 		attrStrings.put(Constants.IDOL_KEY_FIRSTPERSON, firstPerson);
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String str = "";
+		str += "일련번호 : " + id + "\n";
+		
+		Iterator<String> intKeys = attrIntegers.keySet().iterator();
+		while(intKeys.hasNext()) {
+			String tmpKey = intKeys.next();
+			str += tmpKey + " : " + attrIntegers.get(tmpKey) + "\n";
+		}
+		
+		Iterator<String> strKeys = attrStrings.keySet().iterator();
+		while(strKeys.hasNext()) {
+			String tmpKey = strKeys.next();
+			str += tmpKey + " : " + attrStrings.get(tmpKey);
+		}
+		
+		return str;
+	}
+	
+	
 }
 
-// 120
+// 132
