@@ -35,7 +35,7 @@ public class IdolDAO {
 		PreparedStatement pstmt = null;
 		
 		// SQL문 도입부 생성
-		String sql = "insert into idol_tb (" + Constants.IDOL_KEY_ID + "," + Constants.IDOL_KEY_NAME;
+		String sql = "insert into idol_tb (" + Constants.IDOL_KEY_ID;
 		
 		// SQL문에 필드명 추가
 		Iterator<String> intKeys = idol.getAttrIntegers().keySet().iterator();
@@ -46,7 +46,7 @@ public class IdolDAO {
 		while(strKeys.hasNext()) {
 			sql += "," + strKeys.next();
 		}
-		sql += ") values (idol_seq.nextval,'" + idol.getName() + "'";
+		sql += ") values (idol_seq.nextval";
 		intKeys = idol.getAttrIntegers().keySet().iterator();
 		while(intKeys.hasNext()) {
 			sql += "," + idol.getAttrIntegers().get(intKeys.next());
