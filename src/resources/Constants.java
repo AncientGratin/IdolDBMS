@@ -70,4 +70,41 @@ public class Constants {
 	public static final int SUBMENU_NUMBER_UNIT_ACTIVITY = 5;
 	public static final int SUBMENU_NUMBER_BACK = 6;
 	public static final int SUBMENU_NUMBER_BACK_ON_SHOWALL = 4;
+	
+	// 프로그램상에서의 속성값 개수
+	public static final int IDOL_ATTRIBUTE_NUM = 22;
+	
+	// 프로그램상 속성의 자료형
+	public static final int IDOL_ATTRIBUTE_TYPE_INT = 0;
+	public static final int IDOL_ATTRIBUTE_TYPE_STRING = 1;
+	public static final int IDOL_ATTRIBUTE_TYPE_PLURAL = 2;	// 두 개 이상의 값을 묶어서 다루는 속성(생일, 3사이즈)
+	public static final int IDOL_ATTRIBUTE_TYPE_ERR = -1;
+	
+	// Strings 클래스에 있는 프로그램상에서의 속성값 목록에 대한 2차원 배열의 행 인덱스
+	public static final int IDOL_ATTRIBUTES_ROW_NAME = 0;	// 속성 이름 행
+	public static final int IDOL_ATTRIBUTES_ROW_FORM = 0;	// 속성 형식 행
+	
+	// Strings 클래스에 있는 프로그램상에서의 속성값 목록에 대한 2차원 배열의 열 인덱스
+	public static final int IDOL_ATTRIBUTE_COL_NAME = 0;
+	public static final int IDOL_ATTRIBUTE_COL_AGE = 1;
+	public static final int IDOL_ATTRIBUTE_COL_HEIGHT = 2;
+	public static final int IDOL_ATTRIBUTE_COL_WEIGHT = 3;
+	public static final int IDOL_ATTRIBUTE_COL_BIRTHDAY = 4;	
+	public static final int IDOL_ATTRIBUTE_COL_BLOODTYPE = 5;
+	public static final int IDOL_ATTRIBUTE_COL_3SIZES = 6;
+	public static final int IDOL_ATTRIBUTE_COL_HOBBY = 7;
+	public static final int IDOL_ATTRIBUTE_COL_SPECIALITY = 8;
+	public static final int IDOL_ATTRIBUTE_COL_HOMETOWN = 9;
+	public static final int IDOL_ATTRIBUTE_COL_IMAGECOLOR = 10;
+	public static final int IDOL_ATTRIBUTE_COL_COMPANY = 11;
+	public static final int IDOL_ATTRIBUTE_COL_PRIMARYHAND = 12;
+	public static final int IDOL_ATTRIBUTE_COL_LIKEFOOD = 13;
+	public static final int IDOL_ATTRIBUTE_COL_DISLIKEFOOD = 14;
+	public static final int IDOL_ATTRIBUTE_COL_VIRTUE = 15;
+	public static final int IDOL_ATTRIBUTE_COL_CHARM = 16;
+	public static final int IDOL_ATTRIBUTE_COL_DREAM = 17;
+	public static final int IDOL_ATTRIBUTE_COL_STRONGSUBJECT = 18;
+	public static final int IDOL_ATTRIBUTE_COL_WEAKSUBJECT = 19;
+	public static final int IDOL_ATTRIBUTE_COL_COOK = 20;
+	public static final int IDOL_ATTRIBUTE_COL_FIRSTPERSON = 21;
 }

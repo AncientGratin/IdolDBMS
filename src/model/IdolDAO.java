@@ -46,7 +46,7 @@ public class IdolDAO {
 		while(strKeys.hasNext()) {
 			sql += "," + strKeys.next();
 		}
-		sql += ") values (" + idol.getId() + ",'" + idol.getName() + "'";
+		sql += ") values (idol_seq.nextval,'" + idol.getName() + "'";
 		intKeys = idol.getAttrIntegers().keySet().iterator();
 		while(intKeys.hasNext()) {
 			sql += "," + idol.getAttrIntegers().get(intKeys.next());
@@ -411,10 +411,8 @@ public class IdolDAO {
 		IdolDTO idol;
 		
 		try {
-			idol = new IdolDTO(
-					rs.getInt(Constants.IDOL_KEY_ID),
-					rs.getString(Constants.IDOL_KEY_NAME)
-					);
+			idol = new IdolDTO(rs.getString(Constants.IDOL_KEY_NAME));
+			idol.setId(rs.getInt(Constants.IDOL_KEY_ID));
 	
 			// null값이 아닌 속성만 해시맵에 추가
 			if(rs.getObject(Constants.IDOL_KEY_AGE) != null) {

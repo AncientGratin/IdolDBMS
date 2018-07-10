@@ -10,7 +10,7 @@ public class JdbcUtils {
 	Connection conn = null;
 	
 	public Connection getConnection() throws SQLException {
-		String url = "jdbc:oracle:this:@localhost:1521:orcl";	// TODO: 임의의 경로. 필요시 수정할 것
+		String url = "jdbc:oracle:thin:@localhost:1521:orcl";	// TODO: 임의의 경로. 필요시 수정할 것
 		String user = "idol_db";
 		String password = "1234";
 		conn = DriverManager.getConnection(url, user, password);

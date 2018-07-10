@@ -19,11 +19,10 @@ public class IdolDTO {
 	 * @param id : 일련번호
 	 * @param name : 이름
 	 */
-	public IdolDTO(int id, String name) {
-		this.id = id;
+	public IdolDTO(String name) {
 		attrStrings = new HashMap<String, String>();
 		attrIntegers = new HashMap<String, Integer>();
-		
+		setName(name);
 	}
 	
 	public int getId() {

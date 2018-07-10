@@ -33,3 +33,27 @@ create table idol_tb(
 /* 아이돌 테이블 삭제 */
 drop table idol_tb;
 
+/* 아이돌 테이블 보기 */
+select * from idol_tb;
+
+/* 아이돌 일련번호를 위한 시퀀스 */
+create sequence idol_seq
+	start with 1
+	increment by 1
+	maxvalue 1000000
+	nocycle;
+	
+/* 아이돌 일련번호를 위한 시퀀스가 생성되었는지 확인 */
+select idol_seq.nextval from dual;
+select idol_seq.currval from dual;
+
+/* 임의의 아이돌 정보 추가 */
+insert into idol_tb
+	(id, name, age, height, weight, birth_month, birth_date, blood_type, bust, waist, hip, hobby, hometown, image_color, company)
+	values (idol_seq.nextval, '아마미 하루카', 17, 158, 46, 4, 3, 'O', 83, 56, 82, '과자 굽기', '카나가와', '빨간색', '765 프로덕션');
+insert into idol_tb
+	(id, name, age, height, weight, birth_month, birth_date, blood_type, bust, waist, hip, hobby, hometown, image_color, company)
+	values (idol_seq.nextval, '하기와라 유키호', 17, 155, 42, 12, 24, 'A', 81, 56, 81, '시쓰기, 다과, 블로그', '도쿄', '흰색', '765 프로덕션');
+	
+
+/* test */
