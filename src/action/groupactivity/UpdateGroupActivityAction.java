@@ -14,3 +14,5 @@ public class UpdateGroupActivityAction implements Action {
 	}
 
 }
+
+// 3

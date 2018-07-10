@@ -36,7 +36,7 @@ public class Constants {
 	public static final String MAINMENU_NAME_DELETE = "데이터 삭제";
 	public static final String MAINMENU_NAME_UPDATE = "데이터 수정";
 	public static final String MAINMENU_NAME_SEARCH = "데이터 검색";
-	public static final String MAINMENU_NAME_SHOWALL = "전체조회";
+	public static final String MAINMENU_NAME_SHOWALL = "전체조회";	// 33
 	
 	// 메인 메뉴에서의 메뉴 번호
 	public static final int MAINMENU_NUMBER_INSERT = 1;
@@ -52,7 +52,7 @@ public class Constants {
 	public static final int MENU_ID_DELETE = 3;
 	public static final int MENU_ID_UPDATE = 4;
 	public static final int MENU_ID_SEARCH = 5;
-	public static final int MENU_ID_SHOWALL = 6;
+	public static final int MENU_ID_SHOWALL = 6;	// 45
 	
 	// 메뉴 항목 갯수
 	public static final int MAX_MAIN_MENU = 6;
@@ -108,3 +108,5 @@ public class Constants {
 	public static final int IDOL_ATTRIBUTE_COL_COOK = 20;
 	public static final int IDOL_ATTRIBUTE_COL_FIRSTPERSON = 21;
 }
+
+// 87

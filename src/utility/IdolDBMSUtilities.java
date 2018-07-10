@@ -112,7 +112,7 @@ public class IdolDBMSUtilities {
 			return byteLength(value) >= 0 && byteLength(value) <= 20;
 		case Constants.IDOL_ATTRIBUTE_COL_PRIMARYHAND:
 		case Constants.IDOL_ATTRIBUTE_COL_FIRSTPERSON:
-			return byteLength(value) >= 0 && byteLength(value) <= 10;
+			return byteLength(value) >= 0 && byteLength(value) <= 30;
 		// 두 개 이상의 값을 묶어서 다루는 속성(생일, 3사이즈)
 		case Constants.IDOL_ATTRIBUTE_COL_BIRTHDAY:
 		{
@@ -238,3 +238,5 @@ public class IdolDBMSUtilities {
 		}
 	}
 }
+
+// 167

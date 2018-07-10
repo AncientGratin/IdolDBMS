@@ -117,89 +117,6 @@ public class IdolDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-//				foundIdol = 
-//						new IdolDTO(
-//								rs.getInt(Constants.IDOL_KEY_ID),
-//								rs.getString(Constants.IDOL_KEY_NAME)
-//								);
-//				
-//				// null값이 아닌 속성만 해시맵에 추가
-//				if(rs.getObject(Constants.IDOL_KEY_AGE) != null) {
-//					foundIdol.setAge(rs.getInt(Constants.IDOL_KEY_AGE));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_HEIGHT) != null) {
-//					foundIdol.setHeight(rs.getInt(Constants.IDOL_KEY_HEIGHT));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_WEIGHT) != null) {
-//					foundIdol.setWeight(rs.getInt(Constants.IDOL_KEY_WEIGHT));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_BIRTHMONTH) != null) {
-//					foundIdol.setBirthMonth(rs.getInt(Constants.IDOL_KEY_BIRTHMONTH));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_BIRTHDATE) != null) {
-//					foundIdol.setBirthDate(rs.getInt(Constants.IDOL_KEY_BIRTHDATE));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_BLOODTYPE) != null) {
-//					foundIdol.setBloodType(rs.getString(Constants.IDOL_KEY_BLOODTYPE));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_BUST) != null) {
-//					foundIdol.setBust(rs.getInt(Constants.IDOL_KEY_BUST));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_WAIST) != null) {
-//					foundIdol.setWaist(rs.getInt(Constants.IDOL_KEY_WAIST));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_HIP) != null) {
-//					foundIdol.setHip(rs.getInt(Constants.IDOL_KEY_HIP));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_HOBBY) != null) {
-//					foundIdol.setHobby(rs.getString(Constants.IDOL_KEY_HOBBY));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_HOMETOWN) != null) {
-//					foundIdol.setHometown(rs.getString(Constants.IDOL_KEY_HOMETOWN));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_IMAGECOLOR) != null) {
-//					foundIdol.setImageColor(rs.getString(Constants.IDOL_KEY_IMAGECOLOR));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_VOICEACTOR) != null) {
-//					foundIdol.setVoiceActor(rs.getString(Constants.IDOL_KEY_VOICEACTOR));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_COMPANY) != null) {
-//					foundIdol.setCompany(rs.getString(Constants.IDOL_KEY_COMPANY));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_PRIMARYHAND) != null) {
-//					foundIdol.setPrimaryHand(rs.getString(Constants.IDOL_KEY_PRIMARYHAND));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_SPECIALITY) != null) {
-//					foundIdol.setSpeciality(rs.getString(Constants.IDOL_KEY_SPECIALITY));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_LIKEFOOD) != null) {
-//					foundIdol.setLikeFood(rs.getString(Constants.IDOL_KEY_LIKEFOOD));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_DISLIKEFOOD) != null) {
-//					foundIdol.setDislikeFood(rs.getString(Constants.IDOL_KEY_DISLIKEFOOD));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_VIRTUE) != null) {
-//					foundIdol.setVirtue(rs.getString(Constants.IDOL_KEY_VIRTUE));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_CHARM) != null) {
-//					foundIdol.setCharm(rs.getString(Constants.IDOL_KEY_CHARM));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_DREAM) != null) {
-//					foundIdol.setDream(rs.getString(Constants.IDOL_KEY_DREAM));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_STRONGSUBJECT) != null) {
-//					foundIdol.setStrongSubject(rs.getString(Constants.IDOL_KEY_STRONGSUBJECT));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_WEAKSUBJECT) != null) {
-//					foundIdol.setWeakSubject(rs.getString(Constants.IDOL_KEY_WEAKSUBJECT));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_COOK) != null) {
-//					foundIdol.setCook(rs.getString(Constants.IDOL_KEY_COOK));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_FIRSTPERSON) != null) {
-//					foundIdol.setFirstPerson(rs.getString(Constants.IDOL_KEY_FIRSTPERSON));
-//				}
-				
 				foundIdol = resultSetToIdol(rs);
 			}
 		} catch(SQLException ex) {
@@ -231,90 +148,7 @@ public class IdolDAO {
 			pstmt.setString(1, value);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
-//				tmpIdol = 
-//						new IdolDTO(
-//								rs.getInt(Constants.IDOL_KEY_ID),
-//								rs.getString(Constants.IDOL_KEY_NAME)
-//								);
-//				
-//				// null값이 아닌 속성만 해시맵에 추가
-//				if(rs.getObject(Constants.IDOL_KEY_AGE) != null) {
-//					tmpIdol.setAge(rs.getInt(Constants.IDOL_KEY_AGE));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_HEIGHT) != null) {
-//					tmpIdol.setHeight(rs.getInt(Constants.IDOL_KEY_HEIGHT));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_WEIGHT) != null) {
-//					tmpIdol.setWeight(rs.getInt(Constants.IDOL_KEY_WEIGHT));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_BIRTHMONTH) != null) {
-//					tmpIdol.setBirthMonth(rs.getInt(Constants.IDOL_KEY_BIRTHMONTH));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_BIRTHDATE) != null) {
-//					tmpIdol.setBirthDate(rs.getInt(Constants.IDOL_KEY_BIRTHDATE));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_BLOODTYPE) != null) {
-//					tmpIdol.setBloodType(rs.getString(Constants.IDOL_KEY_BLOODTYPE));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_BUST) != null) {
-//					tmpIdol.setBust(rs.getInt(Constants.IDOL_KEY_BUST));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_WAIST) != null) {
-//					tmpIdol.setWaist(rs.getInt(Constants.IDOL_KEY_WAIST));
-//				}
-//				if(rs.getObject(Constants.IDOL_KEY_HIP) != null) {
-//					tmpIdol.setHip(rs.getInt(Constants.IDOL_KEY_HIP));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_HOBBY) != null) {
-//					tmpIdol.setHobby(rs.getString(Constants.IDOL_KEY_HOBBY));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_HOMETOWN) != null) {
-//					tmpIdol.setHometown(rs.getString(Constants.IDOL_KEY_HOMETOWN));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_IMAGECOLOR) != null) {
-//					tmpIdol.setImageColor(rs.getString(Constants.IDOL_KEY_IMAGECOLOR));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_VOICEACTOR) != null) {
-//					tmpIdol.setVoiceActor(rs.getString(Constants.IDOL_KEY_VOICEACTOR));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_COMPANY) != null) {
-//					tmpIdol.setCompany(rs.getString(Constants.IDOL_KEY_COMPANY));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_PRIMARYHAND) != null) {
-//					tmpIdol.setPrimaryHand(rs.getString(Constants.IDOL_KEY_PRIMARYHAND));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_SPECIALITY) != null) {
-//					tmpIdol.setSpeciality(rs.getString(Constants.IDOL_KEY_SPECIALITY));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_LIKEFOOD) != null) {
-//					tmpIdol.setLikeFood(rs.getString(Constants.IDOL_KEY_LIKEFOOD));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_DISLIKEFOOD) != null) {
-//					tmpIdol.setDislikeFood(rs.getString(Constants.IDOL_KEY_DISLIKEFOOD));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_VIRTUE) != null) {
-//					tmpIdol.setVirtue(rs.getString(Constants.IDOL_KEY_VIRTUE));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_CHARM) != null) {
-//					tmpIdol.setCharm(rs.getString(Constants.IDOL_KEY_CHARM));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_DREAM) != null) {
-//					tmpIdol.setDream(rs.getString(Constants.IDOL_KEY_DREAM));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_STRONGSUBJECT) != null) {
-//					tmpIdol.setStrongSubject(rs.getString(Constants.IDOL_KEY_STRONGSUBJECT));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_WEAKSUBJECT) != null) {
-//					tmpIdol.setWeakSubject(rs.getString(Constants.IDOL_KEY_WEAKSUBJECT));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_COOK) != null) {
-//					tmpIdol.setCook(rs.getString(Constants.IDOL_KEY_COOK));
-//				}
-//				if(rs.getString(Constants.IDOL_KEY_FIRSTPERSON) != null) {
-//					tmpIdol.setFirstPerson(rs.getString(Constants.IDOL_KEY_FIRSTPERSON));
-//				}
-				
+			while(rs.next()) {				
 				foundIdols.add(resultSetToIdol(rs));
 			}
 		} catch(SQLException ex) {
@@ -498,4 +332,4 @@ public class IdolDAO {
 	}
 }
 
-// 175
+// 176

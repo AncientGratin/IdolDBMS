@@ -95,7 +95,7 @@ public class InsertIdolAction implements Action {
 					if(IdolDBMSUtilities.checkIdolAttribute(i, strInput))
 						break;
 					else {
-						System.out.println("입력값이 범위를 벗어났거나 유효하지 않습니다. 다시 입력해 주세요.");
+						System.out.println("입력값이 범위를 벗어났거나 입력 형식이 유효하지 않습니다. 다시 입력해 주세요.");
 					}
 				}
 				
@@ -122,7 +122,7 @@ public class InsertIdolAction implements Action {
 					if(IdolDBMSUtilities.checkIdolAttribute(i, strInput))
 						break;
 					else {
-						System.out.println("입력값이 범위를 벗어났거나 유효하지 않습니다. 다시 입력해 주세요.");
+						System.out.println("입력값이 범위를 벗어났거나 입력 형식이 유효하지 않습니다. 다시 입력해 주세요.");
 					}
 				}
 				
@@ -183,4 +183,4 @@ public class InsertIdolAction implements Action {
 
 }
 
-// 
+// 97

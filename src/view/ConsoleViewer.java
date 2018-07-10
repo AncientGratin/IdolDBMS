@@ -94,7 +94,7 @@ public class ConsoleViewer {
 		}	
 		
 		System.out.println("====================");
-	}
+	}	// 48
 	
 	/**
 	 * 사용자에게 메뉴 번호를 입력받고 그 번호를 반환
@@ -147,7 +147,7 @@ public class ConsoleViewer {
 			else
 				System.out.println("메뉴 번호의 범위를 벗어났습니다.");
 		}
-	}
+	}	// 85
 	
 	/**
 	 * 메인 메뉴 실행
@@ -198,7 +198,7 @@ public class ConsoleViewer {
 			// 메뉴 번호에 따른 실행
 			executeAction(mainMenuNo, menu);
 		}
-	}
+	}	// 114
 		
 	/**
 	 * 메인메뉴 번호와 하위메뉴 번호를 받아 해당 액션 실행
@@ -332,3 +332,7 @@ public class ConsoleViewer {
 		}
 	}
 }
+
+// 203
+
+// Total : 2 + 3*5 + 3*4 + 3*4 + 97 + 3*5 + 3*4 + 19 + 8 + 6 + 176 + 120 + 8 + 6 + 87 + 15 + 3 + 167 + 203 + 24 = 1007

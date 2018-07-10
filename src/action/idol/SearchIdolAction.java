@@ -14,3 +14,5 @@ public class SearchIdolAction implements Action {
 	}
 
 }
+
+// 3

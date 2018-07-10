@@ -14,3 +14,5 @@ public class ShowAllIdolAction implements Action {
 	}
 
 }
+
+// 3

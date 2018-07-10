@@ -14,3 +14,5 @@ public class SearchGroupActivityAction implements Action {
 	}
 
 }
+
+// 3

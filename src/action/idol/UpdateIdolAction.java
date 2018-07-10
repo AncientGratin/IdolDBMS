@@ -14,3 +14,5 @@ public class UpdateIdolAction implements Action {
 	}
 
 }
+
+// 3

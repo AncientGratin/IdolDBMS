@@ -14,3 +14,5 @@ public class DeleteGroupActivityAction implements Action {
 	}
 
 }
+
+// 3
