@@ -6,21 +6,21 @@ package model;
  *
  */
 public class UnitDTO {
-	private String id;		// 일련번호
+	private int id;		// 일련번호
 	private String name;	// 유닛명
 	private String company;	// 소속사
 	
-	public UnitDTO(String id, String name) {
+	public UnitDTO(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -39,6 +39,19 @@ public class UnitDTO {
 	public void setCompany(String company) {
 		this.company = company;
 	}
+
+	@Override
+	public String toString() {
+		String str = "";
+		
+		str += "일련번호 : " + id + "\n";
+		str += "유닛명 : " + name + "\n";
+		str += "소속 : " + company + "\n";
+		
+		return str;
+	}
+	
+	
 }
 
-// 6
+// 12

@@ -17,7 +17,9 @@ public class Strings {
 	public static final String COMMAND_SKIP = "/skip";
 	public static final String COMMAND_SKIPALL = "/skipall";
 	
-	public static final String CANCEL_NOTICE = "작업을 취소합니다.\n";
+	// 메시지
+	public static final String NOTICE_CANCEL = "작업을 취소합니다.\n";
+	public static final String NOTICE_INVALID_INPUT = "입력값이 범위를 벗어났거나 입력 형식이 유효하지 않습니다. 다시 입력해 주세요.";
 	
 	// 아이돌 속성 이름 및 입출력 형식
 	// 프로그램상에서는 생일과 3사이즈를 한 번에 입출력

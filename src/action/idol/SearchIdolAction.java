@@ -39,8 +39,8 @@ public class SearchIdolAction implements Action {
 						strInput = sc.nextLine();
 						
 						if(strInput.equals(Strings.COMMAND_CANCEL)) {
-							System.out.println(Strings.CANCEL_NOTICE);
-							return;
+							System.out.println(Strings.NOTICE_CANCEL);
+							break;
 						}
 						
 						try {
@@ -67,15 +67,15 @@ public class SearchIdolAction implements Action {
 					} catch(Exception ex) {
 						ex.printStackTrace();
 					}
-					return;
+					break;
 				case 2:
 					while(true) {
 						System.out.print("이름 = ");
 						strInput = sc.nextLine();
 						
 						if(strInput.equals(Strings.COMMAND_CANCEL)) {
-							System.out.println(Strings.CANCEL_NOTICE);
-							return;
+							System.out.println(Strings.NOTICE_CANCEL);
+							break;
 						}
 						
 						if(IdolDBMSUtilities.checkIdolAttribute(Constants.IDOL_ATTRIBUTE_COL_NAME, strInput)) {
@@ -107,13 +107,13 @@ public class SearchIdolAction implements Action {
 					} catch(Exception ex) {
 						ex.printStackTrace();
 					}
-					return;
+					break;
 				case 3:
 					System.out.println("이 기능은 개발중입니다.\n");
-					return;
+					break;
 				case 4:
 					System.out.println("이 기능은 개발중입니다.\n");
-					return;
+					break;
 				case 5:
 					return;
 				}

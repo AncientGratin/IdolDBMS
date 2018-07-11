@@ -30,7 +30,7 @@ public class InsertIdolAction implements Action {
 			strInput = sc.nextLine();
 			
 			if(strInput.equals(Strings.COMMAND_CANCEL)) {
-				System.out.println(Strings.CANCEL_NOTICE);
+				System.out.println(Strings.NOTICE_CANCEL);
 				return;
 			}
 			
@@ -157,7 +157,7 @@ public class InsertIdolAction implements Action {
 			
 			// 특수 명령 검사 및 처리
 			if(strInput.equals(Strings.COMMAND_CANCEL)) {
-				System.out.println(Strings.CANCEL_NOTICE);
+				System.out.println(Strings.NOTICE_CANCEL);
 				return;
 			}
 			if(strInput.equals(Strings.COMMAND_SKIP)) {	// 현재 항목만 건너뛰기
@@ -171,7 +171,7 @@ public class InsertIdolAction implements Action {
 		try {
 			IdolDAO dao = new IdolDAO();
 			if(dao.insertIdol(idolToInsert)) {
-				System.out.println("\n아이돌 " + idolToInsert.getName() + "님의 정보가 추가되었습니다.\n");
+				System.out.println("\n아이돌 " + idolToInsert.getName() + "님의 정보가 생성되었습니다.\n");
 			}
 			else {
 				System.out.println("\n아이돌 정보 추가에 실패하였습니다.\n");
@@ -183,4 +183,4 @@ public class InsertIdolAction implements Action {
 
 }
 
-// 97
+// 

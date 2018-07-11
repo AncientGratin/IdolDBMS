@@ -70,7 +70,7 @@ public class IdolDAO {
 		}
 		
 		return result > 0;
-	}	// 38
+	}
 	
 	/**
 	 * 아이돌 정보 삭제
@@ -91,6 +91,7 @@ public class IdolDAO {
 			db.commit(conn);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+			result = 0;
 		} finally {
 			db.close(conn, pstmt, null);
 		}
@@ -116,7 +117,7 @@ public class IdolDAO {
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			if(rs != null && rs.next()) {
 				foundIdol = resultSetToIdol(rs);
 			}
 		} catch(SQLException ex) {
@@ -148,7 +149,7 @@ public class IdolDAO {
 			pstmt.setString(1, value);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {				
+			while(rs != null && rs.next()) {				
 				foundIdols.add(resultSetToIdol(rs));
 			}
 		} catch(SQLException ex) {
@@ -208,7 +209,7 @@ public class IdolDAO {
 	 * @return
 	 */
 	public boolean updateIdol(int id, @SuppressWarnings("rawtypes") HashMap attrs) {
-		String sql = "update idol set ";
+		String sql = "update idol_tb set ";
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String key = null;
@@ -227,8 +228,10 @@ public class IdolDAO {
 			conn = db.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			result = pstmt.executeUpdate();
+			db.commit(conn);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+			result = 0;
 		} finally {
 			db.close(conn, pstmt, null);
 		}

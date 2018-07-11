@@ -129,6 +129,8 @@ public class ConsoleViewer {
 		case Constants.MENU_ID_SEARCH_IDOL:
 			menuNum = Constants.MAX_SEARCH_IDOL_MENU;
 			break;
+		case Constants.MENU_ID_SEARCH_UNIT:
+			menuNum = Constants.MAX_SEARCH_UNIT_MENU;
 		default:
 			System.err.println("오류 : 잘못된 매개변수입니다.");
 			return 0;

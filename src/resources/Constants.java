@@ -54,6 +54,7 @@ public class Constants {
 	public static final int MENU_ID_SEARCH = 5;
 	public static final int MENU_ID_SHOWALL = 6;
 	public static final int MENU_ID_SEARCH_IDOL = 7;
+	public static final int MENU_ID_SEARCH_UNIT = 8;
 	
 	// 메뉴 항목 갯수
 	public static final int MAX_MAIN_MENU = 6;
@@ -63,6 +64,7 @@ public class Constants {
 	public static final int MAX_SEARCH_MENU = 6;
 	public static final int MAX_SHOWALL_MENU = 4;
 	public static final int MAX_SEARCH_IDOL_MENU = 5;
+	public static final int MAX_SEARCH_UNIT_MENU = 4;
 	
 	// 하위 메뉴 번호
 	public static final int SUBMENU_NUMBER_IDOL = 1;
@@ -109,6 +111,13 @@ public class Constants {
 	public static final int IDOL_ATTRIBUTE_COL_WEAKSUBJECT = 19;
 	public static final int IDOL_ATTRIBUTE_COL_COOK = 20;
 	public static final int IDOL_ATTRIBUTE_COL_FIRSTPERSON = 21;
+	
+	// 유닛 테이블 속성 이름
+	public static final String UNIT_KEY_ID = "id";
+	public static final String UNIT_KEY_NAME = "unit_name";
+	public static final String UNIT_KEY_COMPANY = "company";
+	
+	
 }
 
 // (87)
