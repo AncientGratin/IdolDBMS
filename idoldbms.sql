@@ -103,4 +103,35 @@ insert into idol_tb
 /* 아이돌 정보를 전부 삭제 */
 delete idol_tb;
 
-/* 24 */
+/* 유닛 테이블 생성 */
+create table unit_tb(
+	id number(7) primary key,
+	unit_name varchar2(20) unique,
+	company varchar2(20)
+);
+
+/* 유닛 테이블 삭제 */
+drop table unit_tb;
+
+/* 유닛 테이블 보기 */
+select * from unit_tb;
+
+/* 유닛 일련번호를 위한 시퀀스 */
+create sequence unit_seq
+	start with 1
+	increment by 1
+	maxvalue 1000000
+	nocycle;
+	
+/* 유닛 일련번호를 위한 시퀀스가 생성되었는지 확인 */
+select unit_seq.nextval from dual;
+select unit_seq.currval from dual;
+
+/* 임의의 유닛 정보 추가 */
+insert into unit_tb values (unit_seq.nextval, '류구 코마치', '765 프로덕션');
+insert into unit_tb values (unit_seq.nextval, '프로젝트 페어리', '961 프로덕션');
+insert into unit_tb values (unit_seq.nextval, 'Printemps', '오토노키자카 학원');
+insert into unit_tb values (unit_seq.nextval, 'BiBi', '오토노키자카 학원');
+insert into unit_tb values (unit_seq.nextval, 'Lily White', '오토노키자카 학원');
+
+/* 35 */
