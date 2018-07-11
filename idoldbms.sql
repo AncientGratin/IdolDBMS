@@ -14,7 +14,6 @@ create table idol_tb(
 	hobby varchar(20),
 	hometown varchar(20),
 	image_color varchar(20),
-	voice_actor varchar(20),
 	company varchar(20),
 	primary_hand varchar(10),
 	speciality varchar(20),

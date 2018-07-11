@@ -94,21 +94,6 @@ public class ConsoleViewer {
 		}	
 		
 		System.out.println("====================");
-	}	// 48
-	
-	/**
-	 * 아이돌 정보 검색 메뉴 출력
-	 */
-	public static void showSearchIdolMenu() {
-		System.out.println("\n======================");
-		System.out.println("    아이돌 정보 검색");
-		System.out.println("----------------------");
-		System.out.println("  1. 일련번호로 검색");
-		System.out.println("  2. 이름으로 검색");
-		System.out.println("  3. 그룹명으로 검색");
-		System.out.println("  4. 유닛명으로 검색");
-		System.out.println("  5. 돌아가기");
-		System.out.println("======================");
 	}
 	
 	/**
@@ -215,20 +200,6 @@ public class ConsoleViewer {
 			
 			// 메뉴 번호에 따른 실행
 			executeAction(mainMenuNo, menu);
-		}
-	}
-	
-	/**
-	 * 아이돌 검색 메뉴 실행
-	 */
-	public void runSearchIdolMenu() {
-		while(true) {
-			showSearchIdolMenu();
-			try {
-				//switch(sear)
-			} catch(NumberFormatException ex) {
-				System.out.println("숫자를 입력해 주세요.");
-			}
 		}
 	}
 		

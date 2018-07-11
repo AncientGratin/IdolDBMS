@@ -247,89 +247,214 @@ public class IdolDAO {
 		try {
 			idol = new IdolDTO(rs.getString(Constants.IDOL_KEY_NAME));
 			idol.setId(rs.getInt(Constants.IDOL_KEY_ID));
-	
-			// null값이 아닌 속성만 해시맵에 추가
+		} catch(SQLException ex) {
+			return null;
+		}
+		
+		// null값이 아닌 속성만 해시맵에 추가
+		try {
 			if(rs.getObject(Constants.IDOL_KEY_AGE) != null) {
 				idol.setAge(rs.getInt(Constants.IDOL_KEY_AGE));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getObject(Constants.IDOL_KEY_HEIGHT) != null) {
 				idol.setHeight(rs.getInt(Constants.IDOL_KEY_HEIGHT));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getObject(Constants.IDOL_KEY_WEIGHT) != null) {
 				idol.setWeight(rs.getInt(Constants.IDOL_KEY_WEIGHT));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getObject(Constants.IDOL_KEY_BIRTHMONTH) != null) {
 				idol.setBirthMonth(rs.getInt(Constants.IDOL_KEY_BIRTHMONTH));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getObject(Constants.IDOL_KEY_BIRTHDATE) != null) {
 				idol.setBirthDate(rs.getInt(Constants.IDOL_KEY_BIRTHDATE));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_BLOODTYPE) != null) {
 				idol.setBloodType(rs.getString(Constants.IDOL_KEY_BLOODTYPE));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getObject(Constants.IDOL_KEY_BUST) != null) {
 				idol.setBust(rs.getInt(Constants.IDOL_KEY_BUST));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getObject(Constants.IDOL_KEY_WAIST) != null) {
 				idol.setWaist(rs.getInt(Constants.IDOL_KEY_WAIST));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getObject(Constants.IDOL_KEY_HIP) != null) {
 				idol.setHip(rs.getInt(Constants.IDOL_KEY_HIP));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_HOBBY) != null) {
 				idol.setHobby(rs.getString(Constants.IDOL_KEY_HOBBY));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_HOMETOWN) != null) {
 				idol.setHometown(rs.getString(Constants.IDOL_KEY_HOMETOWN));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_IMAGECOLOR) != null) {
 				idol.setImageColor(rs.getString(Constants.IDOL_KEY_IMAGECOLOR));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_VOICEACTOR) != null) {
 				idol.setVoiceActor(rs.getString(Constants.IDOL_KEY_VOICEACTOR));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_COMPANY) != null) {
 				idol.setCompany(rs.getString(Constants.IDOL_KEY_COMPANY));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_PRIMARYHAND) != null) {
 				idol.setPrimaryHand(rs.getString(Constants.IDOL_KEY_PRIMARYHAND));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_SPECIALITY) != null) {
 				idol.setSpeciality(rs.getString(Constants.IDOL_KEY_SPECIALITY));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_LIKEFOOD) != null) {
 				idol.setLikeFood(rs.getString(Constants.IDOL_KEY_LIKEFOOD));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_DISLIKEFOOD) != null) {
 				idol.setDislikeFood(rs.getString(Constants.IDOL_KEY_DISLIKEFOOD));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_VIRTUE) != null) {
 				idol.setVirtue(rs.getString(Constants.IDOL_KEY_VIRTUE));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_CHARM) != null) {
 				idol.setCharm(rs.getString(Constants.IDOL_KEY_CHARM));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_DREAM) != null) {
 				idol.setDream(rs.getString(Constants.IDOL_KEY_DREAM));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_STRONGSUBJECT) != null) {
 				idol.setStrongSubject(rs.getString(Constants.IDOL_KEY_STRONGSUBJECT));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_WEAKSUBJECT) != null) {
 				idol.setWeakSubject(rs.getString(Constants.IDOL_KEY_WEAKSUBJECT));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_COOK) != null) {
 				idol.setCook(rs.getString(Constants.IDOL_KEY_COOK));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
 			if(rs.getString(Constants.IDOL_KEY_FIRSTPERSON) != null) {
 				idol.setFirstPerson(rs.getString(Constants.IDOL_KEY_FIRSTPERSON));
 			}
-		} catch(SQLException ex) {
-			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
 		}
 		
 		return idol;
 	}
 }
 
-// 176
+// 

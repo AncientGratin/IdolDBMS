@@ -255,6 +255,8 @@ public class IdolDTO {
 		// TODO Auto-generated method stub
 		String str = "";
 		str += "일련번호 : " + id + "\n";
+		str += "이름 : " + attrStrings.get(Constants.IDOL_KEY_NAME) + "\n";
+		str += "--------------------------------\n";
 		
 		Iterator<String> intKeys = attrIntegers.keySet().iterator();
 		while(intKeys.hasNext()) {
@@ -265,7 +267,12 @@ public class IdolDTO {
 		Iterator<String> strKeys = attrStrings.keySet().iterator();
 		while(strKeys.hasNext()) {
 			String tmpKey = strKeys.next();
-			str += tmpKey + " : " + attrStrings.get(tmpKey);
+			
+			// 이름은 이미 처리했으므로 생략
+			if(tmpKey.equals(Constants.IDOL_KEY_NAME))
+				continue;
+			
+			str += tmpKey + " : " + attrStrings.get(tmpKey) + "\n";
 		}
 		
 		return str;

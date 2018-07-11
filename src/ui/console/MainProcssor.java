@@ -11,7 +11,6 @@ public class MainProcssor {
 		cv.runMainMenu();
 		
 //		// Test code
-//		String str = "대전광역시";
 //		byte[] bytes = str.getBytes();
 //		System.out.println(str.length());
 //		System.out.println(bytes.length);
