@@ -3,8 +3,8 @@ package resources;
 public class Constants {
 	// 아이돌 정보 해시맵 키
 	// DB 테이블 겸용
-	public static final String IDOL_KEY_ID = "id";		// 일련번호
-	public static final String IDOL_KEY_NAME = "name";	// 이름
+	public static final String IDOL_KEY_ID = "idol_id";		// 일련번호
+	public static final String IDOL_KEY_NAME = "idol_name";	// 이름
 	public static final String IDOL_KEY_AGE = "age";
 	public static final String IDOL_KEY_HEIGHT = "height";	// 신장
 	public static final String IDOL_KEY_WEIGHT = "weight";	// 체중
@@ -113,7 +113,7 @@ public class Constants {
 	public static final int IDOL_ATTRIBUTE_COL_FIRSTPERSON = 21;
 	
 	// 유닛 테이블 속성 이름
-	public static final String UNIT_KEY_ID = "id";
+	public static final String UNIT_KEY_ID = "unit_id";
 	public static final String UNIT_KEY_NAME = "unit_name";
 	public static final String UNIT_KEY_COMPANY = "company";
 	
