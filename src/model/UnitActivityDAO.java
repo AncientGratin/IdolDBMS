@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +16,7 @@ import resources.Constants;
 public class UnitActivityDAO {
 	Connection conn = null;
 	JdbcUtils db = null;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public UnitActivityDAO() {
 		db = new JdbcUtils();
@@ -33,22 +35,17 @@ public class UnitActivityDAO {
 		if(joinDate == null)
 			return false;
 		
-		String sql = "insert into unit_activity_tb values(unit_activity_seq.nextval, ?, ?, ?, ?)";
+//		String sql = "insert into unit_activity_tb values(unit_activity_seq.nextval, (select idol_id from idol_tb where idol_id=?), (select unit_id from unit_tb where unit_name=?), (select to_date(?, 'YYYY-MM-DD') from dual), ";
+		String sql = "insert into unit_activity_tb values (unit_activity_seq.nextval, (select idol_id from idol_tb where idol_id=";
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
 		try {
 			conn = db.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, idolId);
-			pstmt.setString(2, unitName);
-			pstmt.setString(3, joinDate);
-			if(leaveDate == null) {
-				pstmt.setNull(4, Types.VARCHAR);
-			} else {
-				pstmt.setString(4, leaveDate);
-			}
 			
+			sql += idolId + "), (select unit_id from unit_tb where unit_name='" + unitName + "'), (select to_date('" + joinDate + "', 'YYYY-MM-DD') from dual), " + (leaveDate == null ? "null" : "(select to_date('" + leaveDate + "') from dual") + ")";
+			
+			pstmt = conn.prepareStatement(sql);
 			result = pstmt.executeUpdate();
 			db.commit(conn);
 		} catch(SQLException ex) {

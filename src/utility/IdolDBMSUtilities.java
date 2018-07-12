@@ -255,7 +255,7 @@ public class IdolDBMSUtilities {
 			if(month < 1 || month > 12) {
 				return false;
 			}
-			switch(date) {
+			switch(month) {
 			case 1:
 			case 3:
 			case 5:

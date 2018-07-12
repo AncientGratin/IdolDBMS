@@ -4,7 +4,10 @@ import java.util.Scanner;
 
 import action.Action;
 import model.IdolDAO;
+import model.IdolDTO;
 import model.UnitActivityDAO;
+import model.UnitDAO;
+import model.UnitDTO;
 import resources.Constants;
 import resources.Strings;
 import utility.IdolDBMSUtilities;
@@ -17,6 +20,10 @@ public class InsertUnitActivityAction implements Action {
 		
 		int id = 0, idolId = 0;
 		String strInput = null, unitName = null, joinDate = null, leaveDate = null;
+		IdolDAO idolDao = new IdolDAO();
+		UnitDAO unitDao = new UnitDAO();
+		IdolDTO idol = null;
+		UnitDTO unit = null;
 		
 		
 		System.out.println("\n----------------------");
@@ -54,9 +61,16 @@ public class InsertUnitActivityAction implements Action {
 			}
 		}
 		
-		// 유닛 일련번호 입력받기
+		try {
+			idol = idolDao.selectById(idolId);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			return;
+		}
+		
+		// 유닛명 입력받기
 		while(true) {
-			System.out.print("*유닛 일련번호 = ");
+			System.out.print("*유닛명 = ");
 			
 			try {
 				strInput = sc.nextLine();
@@ -70,20 +84,18 @@ public class InsertUnitActivityAction implements Action {
 				return;
 			}
 			
-			try {
-				idolId = Integer.parseInt(strInput);
-				break;
-			} catch(NumberFormatException ex) {
-				System.out.println("숫자를 입력해 주세요.");
-			}
+			unitName = new String(strInput);
 			
-			if(IdolDBMSUtilities.checkUnitActivityAttributes(Constants.UNIT_ACTIVITY_KEY_UNIT_ID, id)) {
+			
+			if(IdolDBMSUtilities.checkUnitAttributes(Constants.UNIT_KEY_NAME, unitName)) {
 				break;
 			}
 			else {
 				System.out.println(Strings.NOTICE_INVALID_INPUT);
 			}
 		}
+		
+		unit = unitDao.selectByName(unitName);
 		
 		// 가입일 입력받기
 		while(true) {
@@ -126,7 +138,7 @@ public class InsertUnitActivityAction implements Action {
 				return;
 			}
 			
-			if(strInput.equals(Strings.COMMAND_SKIP)) {
+			if(strInput.equals(Strings.COMMAND_SKIP) || strInput.equals(Strings.COMMAND_SKIPALL)) {
 				break;
 			}
 			
@@ -142,8 +154,23 @@ public class InsertUnitActivityAction implements Action {
 		try {
 			// DB에 유닛 활동 정보 삽입
 			UnitActivityDAO dao = new UnitActivityDAO();
+			
+			// 입력받은 값에 대한 아이돌 및 유닛 정보가 있는지 검사
+			if(idol == null || unit == null) {
+				
+				if(idol == null) {
+					System.out.println("입력하신 일련번호와 일치하는 아이돌 정보가 없습니다.");
+				}
+				if(unit == null) {
+					System.out.println("입력하신 유닛명과 일치하는 유닛 정보가 없습니다.");
+				}
+				
+				System.out.println();
+				return;
+			}
+			
 			if(dao.insert(idolId, unitName, joinDate, leaveDate)) {
-				IdolDAO idolDao = new IdolDAO();
+				idolDao = new IdolDAO();
 				String idolName = idolDao.selectById(idolId).getName();
 				
 				String joinYear = joinDate.substring(0, 4);

@@ -33,17 +33,20 @@ public class UnitDAO {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = "insert into unit_tb values(unit_seq.nextval, ?, ?)";
+//		String sql = "insert into unit_tb values(unit_seq.nextval, ?, ?)";
+		String sql = "insert into unit_tb values(unit_seq.nextval, ?, ";
 		
 		try {
 			conn = db.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
 			if(company != null) {
-				pstmt.setString(2, company);
+//				pstmt.setString(2, company);
+				sql += "'" + company + "')";
 			}
 			else {
-				pstmt.setNull(2, Types.VARCHAR);
+//				pstmt.setNull(2, Types.VARCHAR);
+				sql += "null)";
 			}
 			result = pstmt.executeUpdate();
 			db.commit(conn);
