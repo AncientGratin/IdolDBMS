@@ -428,6 +428,16 @@ public class IdolDBMSUtilities {
 			ex.printStackTrace();
 		}
 	}
+	
+	public ArrayList<UnitDTO> searchUnitsByIdol(int idolId, int belongStatus) {
+		try {
+			
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return null;
+	}
 }
 
 // 

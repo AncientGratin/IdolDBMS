@@ -125,7 +125,9 @@ public class Constants {
 	public static final int IDOL_ATTRIBUTE_COL_COOK = 20;
 	public static final int IDOL_ATTRIBUTE_COL_FIRSTPERSON = 21;
 	
-	
+	// 아이돌과 그룹 또는 유닛 관계에서 현재 소속중인지 이전에 소속되었는지를 정하기 위한 상수
+	public static final int BELONG_CURRENT = 1;
+	public static final int BELONG_PAST = 0;
 	
 	
 }
