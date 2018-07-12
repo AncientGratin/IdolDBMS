@@ -25,7 +25,7 @@ public class UnitDAO {
 	 * @param company : 소속
 	 * @return : 성공 여부
 	 */
-	public boolean insertUnit(String name, String company) {
+	public boolean insert(String name, String company) {
 		// 인수로 받은 유닛 정보가 null값이거나 not null 속성값이 누락되어 있으면 데이터 추가 실패
 		if(name == null)
 			return false;
@@ -49,6 +49,7 @@ public class UnitDAO {
 			db.commit(conn);
 		} catch(Exception ex) {
 			ex.printStackTrace();
+			result = 0;
 		} finally {
 			db.close(conn, pstmt, null);
 		}
@@ -61,7 +62,7 @@ public class UnitDAO {
 	 * @param id : 일련번호
 	 * @return : 성공여부
 	 */
-	public boolean deleteUnit(int id) {
+	public boolean delete(int id) {
 		String sql = "delete from unit_tb where ?=?";
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -75,6 +76,7 @@ public class UnitDAO {
 			db.commit(conn);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
+			result = 0;
 		} finally {
 			db.close(conn, pstmt, null);
 		}
@@ -87,7 +89,7 @@ public class UnitDAO {
 	 * @param id : 일련번호
 	 * @return : 검색된 유닛 객체
 	 */
-	public UnitDTO selectUnitById(int id) {
+	public UnitDTO selectById(int id) {
 		UnitDTO foundUnit = null;
 //		String sql = "select * from unit_tb where ?=?";
 		String sql = "select * from unit_tb where " + Constants.UNIT_KEY_ID + "=" + id;
@@ -101,7 +103,7 @@ public class UnitDAO {
 //			pstmt.setInt(2, id);
 			rs = pstmt.executeQuery();
 			
-			if(rs != null && rs.next()) {
+			if(rs.next()) {
 				foundUnit = new UnitDTO(
 						rs.getInt(Constants.UNIT_KEY_ID), 
 						rs.getString(Constants.UNIT_KEY_NAME));
@@ -125,7 +127,7 @@ public class UnitDAO {
 	 * @param name : 유닛명
 	 * @return : 검색된 유닛 객체
 	 */
-	public UnitDTO selectUnitByName(String name) {
+	public UnitDTO selectByName(String name) {
 		// 인수 검사
 		if(name == null || IdolDBMSUtilities.byteLength(name) < 1 ||
 				IdolDBMSUtilities.byteLength(name) > 20) {
@@ -145,7 +147,7 @@ public class UnitDAO {
 //			pstmt.setString(2, name);
 			rs = pstmt.executeQuery();
 			
-			if(rs != null && rs.next()) {
+			if(rs.next()) {
 				foundUnit = new UnitDTO(
 						rs.getInt(Constants.UNIT_KEY_ID),
 						rs.getString(Constants.UNIT_KEY_NAME));
@@ -168,7 +170,7 @@ public class UnitDAO {
 	 * @param value : 값
 	 * @return : 검색된 유닛 정보의 리스트
 	 */
-	public ArrayList<UnitDTO> selectUnits(String key, Object value) {
+	public ArrayList<UnitDTO> select(String key, Object value) {
 		// 인수 검사
 		if(key == null || value == null)
 			return null;
@@ -188,7 +190,7 @@ public class UnitDAO {
 //			pstmt.setString(2, (String)value);
 			rs = pstmt.executeQuery();
 			
-			while(rs != null && rs.next()) {
+			while(rs.next()) {
 				UnitDTO tmpUnit = new UnitDTO(
 						rs.getInt(Constants.UNIT_KEY_ID),
 						rs.getString(Constants.UNIT_KEY_NAME));
@@ -211,7 +213,7 @@ public class UnitDAO {
 	 * @param unitToUpdate : 갱신할 정보가 저장된 유닛 객체
 	 * @return : 성공여부
 	 */
-	public boolean updateUnit(UnitDTO unitToUpdate) {
+	public boolean update(UnitDTO unitToUpdate) {
 		// 인수 검사
 		if(unitToUpdate == null)
 			return false;

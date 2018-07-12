@@ -31,6 +31,18 @@ public class Constants {
 	public static final String IDOL_KEY_COOK = "cook";					// 잘하는 요리
 	public static final String IDOL_KEY_FIRSTPERSON = "first_person";		// 1인칭
 	
+	// 유닛 테이블 속성 이름
+	public static final String UNIT_KEY_ID = "unit_id";
+	public static final String UNIT_KEY_NAME = "unit_name";
+	public static final String UNIT_KEY_COMPANY = "company";
+		
+	// 유닛 활동 테이블 속성 이름
+	public static final String UNIT_ACTIVITY_KEY_ID = "id";
+	public static final String UNIT_ACTIVITY_KEY_IDOL_ID = "idol_id";
+	public static final String UNIT_ACTIVITY_KEY_UNIT_ID = "unit_id";
+	public static final String UNIT_ACTIVITY_KEY_JOIN_DATE = "join_date";
+	public static final String UNIT_ACTIVITY_KEY_LEAVE_DATE = "leave_date";
+	
 	// 메인 메뉴에서의 메뉴 이름
 	public static final String MAINMENU_NAME_INSERT = "데이터 추가";
 	public static final String MAINMENU_NAME_DELETE = "데이터 삭제";
@@ -113,10 +125,7 @@ public class Constants {
 	public static final int IDOL_ATTRIBUTE_COL_COOK = 20;
 	public static final int IDOL_ATTRIBUTE_COL_FIRSTPERSON = 21;
 	
-	// 유닛 테이블 속성 이름
-	public static final String UNIT_KEY_ID = "unit_id";
-	public static final String UNIT_KEY_NAME = "unit_name";
-	public static final String UNIT_KEY_COMPANY = "company";
+	
 	
 	
 }

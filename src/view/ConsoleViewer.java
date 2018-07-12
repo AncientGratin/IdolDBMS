@@ -10,7 +10,6 @@ import action.group.ShowAllGroupAction;
 import action.group.UpdateGroupAction;
 import action.groupactivity.DeleteGroupActivityAction;
 import action.groupactivity.InsertGroupActivityAction;
-import action.groupactivity.SearchGroupActivityAction;
 import action.groupactivity.UpdateGroupActivityAction;
 import action.idol.DeleteIdolAction;
 import action.idol.InsertIdolAction;
@@ -24,7 +23,6 @@ import action.unit.ShowAllUnitAction;
 import action.unit.UpdateUnitAction;
 import action.unitactivity.DeleteUnitActivityAction;
 import action.unitactivity.InsertUnitActivityAction;
-import action.unitactivity.SearchUnitActivityAction;
 import action.unitactivity.UpdateUnitActivityAction;
 import resources.Constants;
 
@@ -307,14 +305,6 @@ public class ConsoleViewer {
 				break;
 			case Constants.SUBMENU_NUMBER_UNIT:
 				action = new SearchUnitAction();
-				action.execute(sc);
-				break;
-			case Constants.SUBMENU_NUMBER_GROUP_ACTIVITY:
-				action = new SearchGroupActivityAction();
-				action.execute(sc);
-				break;
-			case Constants.SUBMENU_NUMBER_UNIT_ACTIVITY:
-				action = new SearchUnitActivityAction();
 				action.execute(sc);
 				break;
 			}

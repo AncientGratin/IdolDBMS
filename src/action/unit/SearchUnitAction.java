@@ -56,7 +56,7 @@ public class SearchUnitAction implements Action {
 					
 					try {
 						UnitDAO dao = new UnitDAO();
-						UnitDTO unit = dao.selectUnitById(intVal);
+						UnitDTO unit = dao.selectById(intVal);
 						if(unit == null) {
 							System.out.println("일련번호가 일치하는 유닛이 없습니다.\n");
 						}
@@ -96,7 +96,7 @@ public class SearchUnitAction implements Action {
 					
 					try {
 						UnitDAO dao = new UnitDAO();
-						UnitDTO unit = dao.selectUnitByName(strInput);
+						UnitDTO unit = dao.selectByName(strInput);
 						
 						if(unit == null) {
 							System.out.println("이름이 일치하는 유닛이 없습니다.");

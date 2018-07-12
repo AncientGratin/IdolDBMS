@@ -24,7 +24,7 @@ public class IdolDAO {
 	 * @param idol : 아이돌 DTO 객체
 	 * @return : 성공여부
 	 */
-	public boolean insertIdol(IdolDTO idol) {
+	public boolean insert(IdolDTO idol) {
 		// 인수로 받은 아이돌 정보가 null값이거나 not null 속성이 누락되어 있으면 데이터 추가 실패
 		if(idol == null)
 			return false;
@@ -77,7 +77,7 @@ public class IdolDAO {
 	 * @param id : 일련번호
 	 * @return : 성공여부
 	 */
-	public boolean deleteIdol(int id) {
+	public boolean delete(int id) {
 		String sql = "delete from idol_tb where" + Constants.IDOL_KEY_ID + "=?";
 		
 		PreparedStatement pstmt = null;
@@ -104,7 +104,7 @@ public class IdolDAO {
 	 * @param id : 일련번호
 	 * @return : 아이돌 DTO
 	 */
-	public IdolDTO selectIdolById(int id) {
+	public IdolDTO selectById(int id) {
 		String sql = "select * from idol_tb where " + Constants.IDOL_KEY_ID + "=?";
 		IdolDTO foundIdol = null;
 		
@@ -117,7 +117,7 @@ public class IdolDAO {
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			
-			if(rs != null && rs.next()) {
+			if(rs.next()) {
 				foundIdol = resultSetToIdol(rs);
 			}
 		} catch(SQLException ex) {
@@ -136,7 +136,7 @@ public class IdolDAO {
 	 * @param value : 값
 	 * @return
 	 */
-	public ArrayList<IdolDTO> selectIdols(String field, String value) {
+	public ArrayList<IdolDTO> select(String field, String value) {
 		String sql = "select * from idol_tb where " + field + "=?";
 		ArrayList<IdolDTO> foundIdols = new ArrayList<IdolDTO>();
 		
@@ -149,7 +149,7 @@ public class IdolDAO {
 			pstmt.setString(1, value);
 			rs = pstmt.executeQuery();
 			
-			while(rs != null && rs.next()) {				
+			while(rs.next()) {				
 				foundIdols.add(resultSetToIdol(rs));
 			}
 		} catch(SQLException ex) {
@@ -168,8 +168,8 @@ public class IdolDAO {
 	 * @param value
 	 * @return
 	 */
-	public ArrayList<IdolDTO> selectIdols(String field, int value) {
-		return selectIdols(field, String.valueOf(value));
+	public ArrayList<IdolDTO> select(String field, int value) {
+		return select(field, String.valueOf(value));
 	}
 	
 	/**
@@ -188,7 +188,7 @@ public class IdolDAO {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			while(rs != null && rs.next()) {
+			while(rs.next()) {
 				idols.add(resultSetToIdol(rs));
 			}
 			
@@ -208,7 +208,7 @@ public class IdolDAO {
 	 * @param attrIntegers : 갱신할 속성의 필드명과 값을 담은 해시맵
 	 * @return
 	 */
-	public boolean updateIdol(int id, @SuppressWarnings("rawtypes") HashMap attrs) {
+	public boolean update(int id, @SuppressWarnings("rawtypes") HashMap attrs) {
 		String sql = "update idol_tb set ";
 		PreparedStatement pstmt = null;
 		int result = 0;

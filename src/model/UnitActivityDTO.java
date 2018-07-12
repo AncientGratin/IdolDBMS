@@ -6,41 +6,42 @@ package model;
  *
  */
 public class UnitActivityDTO {
-	private String id;			// 일련번호
-	private String unitId;		// 유닛 일련번호
-	private String idolId;		// 아이돌 일련번호
+	private int id;			// 일련번호
+	private int idolId;		// 아이돌 일련번호
+	private int unitId;		// 유닛 일련번호
 	private String joinedDate;	// 가입일
 	private String leavedDate;	// 탈퇴일
 	
-	public UnitActivityDTO(String id, String unitId, String idolId, String joinedDate) {
+	public UnitActivityDTO(int id, int idolId, int unitId, String joinedDate, String leavedDate) {
 		super();
 		this.id = id;
-		this.unitId = unitId;
 		this.idolId = idolId;
+		this.unitId = unitId;
 		this.joinedDate = joinedDate;
+		this.leavedDate = leavedDate;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getUnitId() {
+	public int getUnitId() {
 		return unitId;
 	}
 
-	public void setUnitId(String unitId) {
+	public void setUnitId(int unitId) {
 		this.unitId = unitId;
 	}
 
-	public String getIdolId() {
+	public int getIdolId() {
 		return idolId;
 	}
 
-	public void setIdolId(String idolId) {
+	public void setIdolId(int idolId) {
 		this.idolId = idolId;
 	}
 

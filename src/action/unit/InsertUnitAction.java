@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import action.Action;
 import model.UnitDAO;
+import resources.Constants;
 import resources.Strings;
 import utility.IdolDBMSUtilities;
 
@@ -12,13 +13,14 @@ public class InsertUnitAction implements Action {
 	@Override
 	public void execute(Scanner sc) {
 		// TODO Auto-generated method stub
-		String name = "", company = "";
+		String name = null, company = null;
 		
 		System.out.println("\n-------------");
 		System.out.println("  유닛 추가");
 		System.out.println("-------------");
 		System.out.println(Strings.NOTICE_ESSENTIAL_INPUT);
 		
+		// 유닛명 입력받기
 		while(true) {
 			System.out.print("*유닛명 = ");
 			try {
@@ -28,8 +30,7 @@ public class InsertUnitAction implements Action {
 					System.out.println(Strings.NOTICE_CANCEL);
 					return;
 				}				
-				if(IdolDBMSUtilities.byteLength(name) > 0 && 
-						IdolDBMSUtilities.byteLength(name) < 21) {
+				if(IdolDBMSUtilities.checkUnitAttributes(Constants.UNIT_KEY_NAME, name)) {
 					break;
 				}
 				else {
@@ -42,6 +43,7 @@ public class InsertUnitAction implements Action {
 			}
 		}
 		
+		// 소속 입력받기
 		while(true) {
 			System.out.print("소속 = ");
 			
@@ -53,8 +55,11 @@ public class InsertUnitAction implements Action {
 					return;
 				}
 				
-				if(IdolDBMSUtilities.byteLength(company) > 0 &&
-						IdolDBMSUtilities.byteLength(company) < 21) {
+				if(company.equals(Strings.COMMAND_SKIP)) {
+					break;
+				}
+				
+				if(IdolDBMSUtilities.checkUnitAttributes(Constants.UNIT_KEY_COMPANY, company)) {
 					break;
 				}
 				else {
@@ -69,7 +74,7 @@ public class InsertUnitAction implements Action {
 		// DB에 유닛 삽입
 		try {
 			UnitDAO dao = new UnitDAO();
-			if(dao.insertUnit(name, company)) {
+			if(dao.insert(name, company)) {
 				System.out.println("유닛 " + name + "의 정보가 생성되었습니다.");
 			}
 			else {

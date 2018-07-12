@@ -170,7 +170,7 @@ public class InsertIdolAction implements Action {
 		
 		try {
 			IdolDAO dao = new IdolDAO();
-			if(dao.insertIdol(idolToInsert)) {
+			if(dao.insert(idolToInsert)) {
 				System.out.println("\n아이돌 " + idolToInsert.getName() + "님의 정보가 생성되었습니다.\n");
 			}
 			else {

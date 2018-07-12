@@ -183,6 +183,100 @@ public class IdolDBMSUtilities {
 	}
 	
 	/**
+	 * 유닛 데이터 속성 유효성 검사
+	 * @param key : 속성 이름
+	 * @param value : 속성값
+	 * @return : 유효성 유무
+	 */
+	public static boolean checkUnitAttributes(String key, Object value) {
+		switch(key) {
+		case Constants.UNIT_KEY_ID:
+			if(!(value instanceof Integer)) {
+				return false;
+			}
+			return (Integer)value > 0 && (Integer)value < 1000001;
+		case Constants.UNIT_KEY_NAME:
+		case Constants.UNIT_KEY_COMPANY:
+			if(!(value instanceof String)) {
+				return false;
+			}
+			return IdolDBMSUtilities.byteLength((String)value) > 0 && 
+					IdolDBMSUtilities.byteLength((String)value) > 21;
+		default:
+			return false;
+		}
+	}
+	
+	public static boolean checkUnitActivityAttributes(String key, Object value) {
+		switch(key) {
+		case Constants.UNIT_ACTIVITY_KEY_ID:
+		case Constants.UNIT_ACTIVITY_KEY_IDOL_ID:
+		case Constants.UNIT_ACTIVITY_KEY_UNIT_ID:
+			if(!(value instanceof Integer)) {
+				return false;
+			}
+			return (Integer)value > 0 && (Integer)value < 1000001;
+		case Constants.UNIT_ACTIVITY_KEY_JOIN_DATE:
+		case Constants.UNIT_ACTIVITY_KEY_LEAVE_DATE:
+			
+			// 가입일은 null값 불허
+			if(key.equals(Constants.UNIT_ACTIVITY_KEY_JOIN_DATE) && value == null) {
+				return false;
+			}
+			
+			// 날짜의 입력은 문자열로 받는다.
+			if(!(value instanceof String)) {
+				return false;
+			}
+			String[] tmpStrings = ((String)value).split("-");
+			if(tmpStrings.length != 3) {
+				return false;
+			}
+			int year = 0;
+			int month = 0;
+			int date = 0;
+			try {
+				year = Integer.parseInt(tmpStrings[0]);
+				month = Integer.parseInt(tmpStrings[1]);
+				date = Integer.parseInt(tmpStrings[2]);	
+			} catch(NumberFormatException ex) {
+				ex.printStackTrace();
+				return false;
+			}
+			
+			if(month < 1 || month > 12) {
+				return false;
+			}
+			switch(date) {
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				return date > 0 && date < 32;
+			case 2:
+				if(year % 4 == 0 && year % 100 != 0) {
+					return date > 0 && date < 30;
+				}
+				else {
+					return date > 0 && date < 29;
+				}
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				return date > 0 && date < 31;
+			default:
+				return false;
+			}
+		default:
+			return false;
+		}
+	}
+	
+	/**
 	 * 프로그램상의 아이돌 속성 인덱스 번호를 속성 키 문자열로 변환
 	 * @param index
 	 * @return
@@ -239,4 +333,4 @@ public class IdolDBMSUtilities {
 	}
 }
 
-// 167
+// 

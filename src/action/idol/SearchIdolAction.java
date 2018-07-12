@@ -53,7 +53,7 @@ public class SearchIdolAction implements Action {
 					
 					try {
 						IdolDAO dao = new IdolDAO();
-						IdolDTO idol = dao.selectIdolById(intVal);
+						IdolDTO idol = dao.selectById(intVal);
 						if(idol == null) {
 							System.out.println("일련번호가 일치하는 아이돌이 없습니다.\n");
 						}
@@ -88,7 +88,7 @@ public class SearchIdolAction implements Action {
 					
 					try {
 						IdolDAO dao = new IdolDAO();
-						ArrayList<IdolDTO> idols = dao.selectIdols(Constants.IDOL_KEY_NAME, strInput);
+						ArrayList<IdolDTO> idols = dao.select(Constants.IDOL_KEY_NAME, strInput);
 						
 						if(idols == null || idols.size() == 0) {
 							System.out.println("일련번호가 일치하는 아이돌이 없습니다.");
