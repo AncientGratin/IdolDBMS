@@ -213,4 +213,49 @@ select * from idol_tb where idol_id in(select idol_id from unit_activity_tb wher
 /* 테스트할 때는 id를 항상 재확인할 것 */
 select * from idol_tb where idol_id in(select idol_id from unit_activity_tb where unit_id=21 and leave_date is not null);
 
-/* 48 */
+/* 그룹 테이블 생성 */
+create table group_tb(
+	group_id number(7) primary key,
+	group_name varchar2(20) unique not null,
+	company varchar2(20)
+);
+
+/* 그룹 테이블 제거 */
+drop table group_tb;
+
+/* 그룹 일련번호를 위한 시퀀스 생성 */
+create sequence group_seq
+	start with 1
+	increment by 1
+	maxvalue 1000000
+	nocycle;
+	
+/* 임의의 그룹 데이터 추가 */
+insert into group_tb values (group_seq.nextval, 'μ`s', '오토노키자카 학원');
+
+/* 그룹 테이블 전체 보기 */
+select * from group_tb;
+
+/* 그룹 활동 테이블 생성 */
+create table group_activity_tb(
+	id number(7) primary key,
+	idol_id number(7) constraint idol_id_fk references idol_tb,
+	group_id number(7) constraint group_id_fk references group_tb,
+	join_date date not null,
+	leave_date date
+);
+
+/* 그룹 활동 테이블 제거 */
+drop table group_activity_tb;
+
+/* 그룹 활동 일련번호를 위한 시퀀스 생성 */
+create sequence group_activity_seq
+	start with 1
+	increment by 1
+	maxvalue 1000000
+	nocycle;
+
+/* 그룹 활동 테이블 전체 보기 */
+select * from group_activity_tb;
+
+/* 57 */

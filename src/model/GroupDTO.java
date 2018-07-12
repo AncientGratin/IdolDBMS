@@ -1,21 +1,21 @@
 package model;
 
 public class GroupDTO {
-	private String id;		// 일련번호
+	private int id;		// 일련번호
 	private String name;	// 그룹명
 	private String company;	// 소속사
 	
-	public GroupDTO(String id, String name) {
+	public GroupDTO(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
