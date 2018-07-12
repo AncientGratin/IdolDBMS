@@ -197,20 +197,20 @@ insert into unit_activity_tb values(
 /* 유닛 활동 전체보기 */
 select * from unit_activity_tb;
 
-/* (44) */
-
 /* 아이돌 일련번호로 그 아이돌이 현재 소속되어 있는 유닛을 검색 */
 /* 테스트할 때는 id를 항상 재확인할 것 */
-select * from unit_tb where unit_id in(select unit_id from unit_activity_tb where idol_id=26 and leave_date is null);
+select * from unit_tb where unit_id in(select unit_id from unit_activity_tb where idol_id=84 and leave_date is null);
 
 /* 아이돌 일련번호로 그 아이돌이 이전에 소속되어 있었던 유닛을 검색 */
 /* 테스트할 때는 id를 항상 재확인할 것 */
-select * from unit_tb where unit_id in(select unit_id from unit_activity_tb where idol_id=31 and leave_date is not null);
+select * from unit_tb where unit_id in(select unit_id from unit_activity_tb where idol_id=89 and leave_date is not null);
 
 /* 유닛 일련번호로 현재 소속되어 있는 멤버들을 검색 */
 /* 테스트할 때는 id를 항상 재확인할 것 */
-select * from idol_tb where idol_id in(select idol_id from unit_activity_tb where unit_id=22 and leave_date is null);
+select * from idol_tb where idol_id in(select idol_id from unit_activity_tb where unit_id=20 and leave_date is null);
 
 /* 유닛 일련번호로 이전에 소속되어 있었던 멤버들을 검색 */
 /* 테스트할 때는 id를 항상 재확인할 것 */
-select * from idol_tb where idol_id in(select idol_id from unit_activity_tb where unit_id=23 and leave_date is not null);
+select * from idol_tb where idol_id in(select idol_id from unit_activity_tb where unit_id=21 and leave_date is not null);
+
+/* 48 */

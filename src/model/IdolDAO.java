@@ -173,10 +173,51 @@ public class IdolDAO {
 	}
 	
 	/**
+	 * 아이돌이 현재 활동 중이거나 이전에 활동 중이었던 유닛 목록 검색
+	 * @param idolId : 아이돌 일련번호
+	 * @param belongStatus : 현재 소속 중인지, 이전에 소속되었는지를 식별하는 상수
+	 * @return : 유닛 리스트
+	 */
+	public ArrayList<UnitDTO> selectUnits(int idolId, int belongStatus) {
+		ArrayList<UnitDTO> units = new ArrayList<UnitDTO>();
+		
+		if(belongStatus != Constants.BELONG_CURRENT && belongStatus != Constants.BELONG_PAST) {
+			return units;
+		}
+		
+		String sql = "select * from unit_tb where unit_id in(select unit_id from unit_activity_tb where idol_id=" 
+				+ idolId + " and leave_date is" 
+				+ (belongStatus == Constants.BELONG_CURRENT ? "" : " not") + " null)";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String unitName = rs.getString(Constants.UNIT_KEY_NAME);
+				UnitDTO unit = new UnitDTO(rs.getInt(Constants.UNIT_KEY_ID), rs.getString(Constants.UNIT_KEY_NAME));
+				if(rs.getString(Constants.UNIT_KEY_COMPANY) != null) {
+					unit.setCompany(rs.getString(Constants.UNIT_KEY_COMPANY));
+				}
+				units.add(unit);
+			}
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+			units.clear();
+		} finally {
+			db.close(conn, pstmt, rs);
+		}
+		
+		return units;
+	}
+	
+	/**
 	 * 아이돌 전체 목록 가져오기
 	 * @return : 아이돌 ArrayList
 	 */
-	public ArrayList<IdolDTO> selectAllIdols() {
+	public ArrayList<IdolDTO> selectAll() {
 		String sql = "select * from idol_tb order by id asc";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -237,7 +278,7 @@ public class IdolDAO {
 		}
 		
 		return result > 0;
-	}	// 128
+	}
 	
 	/**
 	 * ResultSet 객체로부터 null값이 아닌 속성값들을 얻어온 다음 IdolDTO 객체에 저장하여 반환 
@@ -459,46 +500,7 @@ public class IdolDAO {
 		return idol;
 	}
 	
-	/**
-	 * 아이돌이 현재 활동 중이거나 이전에 활동 중이었던 유닛 목록 검색
-	 * @param idolId : 아이돌 일련번호
-	 * @param belongStatus : 현재 소속 중인지, 이전에 소속되었는지를 식별하는 상수
-	 * @return : 유닛 리스트
-	 */
-	public ArrayList<UnitDTO> selectUnits(int idolId, int belongStatus) {
-		ArrayList<UnitDTO> units = new ArrayList<UnitDTO>();
-		
-		if(belongStatus != Constants.BELONG_CURRENT && belongStatus != Constants.BELONG_PAST) {
-			return units;
-		}
-		
-		String sql = "select * from unit_tb where unit_id in(select unit_id from unit_activity_tb where idol_id=" 
-				+ idolId + " and leave_date is" 
-				+ (belongStatus == Constants.BELONG_CURRENT ? "" : " not") + " null)";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = db.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				String unitName = rs.getString(Constants.UNIT_KEY_NAME);
-				UnitDTO unit = new UnitDTO(rs.getInt(Constants.UNIT_KEY_ID), rs.getString(Constants.UNIT_KEY_NAME));
-				if(rs.getString(Constants.UNIT_KEY_COMPANY) != null) {
-					unit.setCompany(rs.getString(Constants.UNIT_KEY_COMPANY));
-				}
-				units.add(unit);
-			}
-		} catch(SQLException ex) {
-			ex.printStackTrace();
-			units.clear();
-		} finally {
-			db.close(conn, pstmt, rs);
-		}
-		
-		return units;
-	}
+	
 }
 
 // 

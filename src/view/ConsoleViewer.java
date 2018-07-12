@@ -150,7 +150,7 @@ public class ConsoleViewer {
 			else
 				System.out.println("메뉴 번호의 범위를 벗어났습니다.");
 		}
-	}	// 85
+	}
 	
 	/**
 	 * 메인 메뉴 실행

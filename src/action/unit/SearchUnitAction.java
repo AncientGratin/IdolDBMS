@@ -25,12 +25,12 @@ public class SearchUnitAction implements Action {
 		
 		while(true) {
 			System.out.println("\n======================");
-			System.out.println("    유닛 정보 검색");
+			System.out.println("    3) 유닛 정보 검색");
 			System.out.println("----------------------");
-			System.out.println("  1. 일련번호로 검색");
-			System.out.println("  2. 유닛명으로 검색");
-			System.out.println("  3. 아이돌명으로 검색");
-			System.out.println("  4. 돌아가기");
+			System.out.println("  (1) 일련번호로 검색");
+			System.out.println("  (2) 유닛명으로 검색");
+			System.out.println("  (3) 아이돌명으로 검색");
+			System.out.println("  (4) 돌아가기");
 			System.out.println("======================");
 			
 			try {

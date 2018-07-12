@@ -209,7 +209,7 @@ public class IdolDBMSUtilities {
 				return false;
 			}
 			return IdolDBMSUtilities.byteLength((String)value) > 0 && 
-					IdolDBMSUtilities.byteLength((String)value) > 21;
+					IdolDBMSUtilities.byteLength((String)value) < 21;
 		default:
 			return false;
 		}
@@ -392,51 +392,57 @@ public class IdolDBMSUtilities {
 		if(idol == null)
 			return;
 		
-		UnitDAO unitDao = new UnitDAO();
-		UnitActivityDAO unitActivityDao = new UnitActivityDAO();
+		IdolDAO dao = new IdolDAO();
 		
 		try {
-			ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_IDOL_ID, idol.getId());
+			ArrayList<UnitDTO> curUnits = dao.selectUnits(idol.getId(), Constants.BELONG_CURRENT);
+			ArrayList<UnitDTO> exUnits = dao.selectUnits(idol.getId(), Constants.BELONG_PAST);
 			
-			if(unitActivities != null) {
-				ArrayList<String> curUnits = new ArrayList<String>();	// 현재 활동 중인 유닛 목록
-				ArrayList<String> exUnits = new ArrayList<String>();	// 이전에 활동했언 유닛 목록
-				
-				for(int i = 0; i < unitActivities.size(); i++) {
-					if(unitActivities.get(i).getLeavedDate() == null) {
-						exUnits.add(unitDao.selectById(unitActivities.get(i).getUnitId()).getName());
-					} else {
-						curUnits.add(unitDao.selectById(unitActivities.get(i).getUnitId()).getName());
-					}
+			if(curUnits != null && curUnits.size() > 0) {
+				System.out.println("활동중인 유닛");
+				for(int i = 0; i < curUnits.size(); i++) {
+					System.out.println("  - " + curUnits.get(i).getName());
 				}
-				
-				if(curUnits.size() > 0) {
-					System.out.println("활동중인 유닛");
-					for(int i = 0; i < curUnits.size(); i++) {
-						System.out.println("  - " + curUnits.get(i));
-					}
+			}
+			
+			if(exUnits != null && exUnits.size() > 0) {
+				System.out.println("이전에 활동했던 유닛");
+				for(int i = 0; i < exUnits.size(); i++) {
+					System.out.println("  - " + exUnits.get(i).getName());
 				}
-				
-				if(exUnits.size() > 0) {
-					System.out.println("이전에 활동했던 유닛");
-					for(int i = 0; i < exUnits.size(); i++) {
-						System.out.println("  - " + exUnits.get(i));
-					}
-				}	
 			}
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 	
-	public ArrayList<UnitDTO> searchUnitsByIdol(int idolId, int belongStatus) {
+	/**
+	 * 유닛의 현 멤버 및 이전 멤버 출력
+	 * @param unitId : 유닛 일련번호
+	 */
+	public static void showIdolsByUnit(int unitId) {
+		UnitDAO dao = new UnitDAO();
+		
 		try {
+			ArrayList<IdolDTO> curIdols = dao.selectIdols(unitId, Constants.BELONG_CURRENT);
+			ArrayList<IdolDTO> exIdols = dao.selectIdols(unitId, Constants.BELONG_PAST);
 			
+			if(curIdols != null && curIdols.size() > 0) {
+				System.out.println("멤버");
+				for(int i = 0; i < curIdols.size(); i++) {
+					System.out.println("  - " + curIdols.get(i).getName());
+				}
+			}
+			
+			if(exIdols != null && exIdols.size() > 0) {
+				System.out.println("이전 멤버");
+				for(int i = 0; i < exIdols.size(); i++) {
+					System.out.println("  - " + exIdols.get(i).getName());
+				}
+			}
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		
-		return null;
 	}
 }
 

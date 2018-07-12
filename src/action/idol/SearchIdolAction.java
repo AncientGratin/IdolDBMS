@@ -6,9 +6,8 @@ import java.util.Scanner;
 import action.Action;
 import model.IdolDAO;
 import model.IdolDTO;
-import model.UnitActivityDAO;
-import model.UnitActivityDTO;
 import model.UnitDAO;
+import model.UnitDTO;
 import resources.Constants;
 import resources.Strings;
 import utility.IdolDBMSUtilities;
@@ -25,13 +24,13 @@ public class SearchIdolAction implements Action {
 		
 		while(true) {
 			System.out.println("\n======================");
-			System.out.println("    아이돌 정보 검색");
+			System.out.println("    1) 아이돌 정보 검색");
 			System.out.println("----------------------");
-			System.out.println("  1. 일련번호로 검색");
-			System.out.println("  2. 이름으로 검색");
-			System.out.println("  3. 그룹명으로 검색");
-			System.out.println("  4. 유닛명으로 검색");
-			System.out.println("  5. 돌아가기");
+			System.out.println("  (1) 일련번호로 검색");
+			System.out.println("  (2) 이름으로 검색");
+			System.out.println("  (3) 그룹명으로 검색");
+			System.out.println("  (4) 유닛명으로 검색");
+			System.out.println("  (5) 돌아가기");
 			System.out.println("======================");
 			
 			try {
@@ -112,7 +111,13 @@ public class SearchIdolAction implements Action {
 				case 2:
 					while(true) {
 						System.out.print("이름 = ");
-						strInput = sc.nextLine();
+						
+						try {
+							strInput = sc.nextLine();
+						} catch(Exception ex) {
+							ex.printStackTrace();
+							break;
+						}
 						
 						if(strInput.equals(Strings.COMMAND_CANCEL)) {
 							System.out.println(Strings.NOTICE_CANCEL);
@@ -153,7 +158,83 @@ public class SearchIdolAction implements Action {
 					System.out.println("이 기능은 개발중입니다.\n");
 					break;
 				case 4:
-					System.out.println("이 기능은 개발중입니다.\n");
+					while(true) {
+						System.out.print("유닛명 = ");
+						try {
+							strInput = sc.nextLine();
+						} catch(Exception ex) {
+							ex.printStackTrace();
+							break;
+						}
+						
+						if(strInput.equals(Strings.COMMAND_CANCEL)) {
+							System.out.println(Strings.NOTICE_CANCEL);
+							break;
+						}
+						
+						if(IdolDBMSUtilities.checkUnitAttributes(Constants.UNIT_KEY_NAME, strInput)) {
+							break;
+						} else {
+							System.out.println(Strings.NOTICE_INVALID_INPUT);
+						}
+					}
+					
+					if(strInput.equals(Strings.COMMAND_CANCEL)) {
+						System.out.println(Strings.NOTICE_CANCEL);
+						break;
+					}
+					
+					try {
+						IdolDAO dao = new IdolDAO();
+						UnitDAO unitDao = new UnitDAO();
+						
+						UnitDTO unit = unitDao.selectByName(strInput);
+						
+						if(unit == null) {
+							System.out.println("이름이 일치하는 유닛이 없습니다.\n");
+							break;
+						}
+						
+						ArrayList<IdolDTO> curIdols = unitDao.selectIdols(unit.getId(), Constants.BELONG_CURRENT);
+						ArrayList<IdolDTO> exIdols = unitDao.selectIdols(unit.getId(), Constants.BELONG_PAST);
+						boolean isExistMember = false;
+						
+						if(curIdols != null && curIdols.size() > 0) {
+							isExistMember = true;
+							System.out.println("========================================");
+							System.out.println("  유닛 " + unit.getName() + "의 멤버들");
+							System.out.println("========================================");
+							for(int i = 0; i < curIdols.size(); i++) {
+								System.out.print(curIdols.get(i));
+								IdolDBMSUtilities.showUnitsByIdol(curIdols.get(i));
+								System.out.println("========================================");
+							}
+						}
+						
+						if(exIdols != null && exIdols.size() > 0) {
+							isExistMember = true;
+							System.out.println("========================================");
+							System.out.println("  유닛 " + unit.getName() + "의 이전 멤버들");
+							System.out.println("========================================");
+							for(int i = 0; i < exIdols.size(); i++) {
+								System.out.print(exIdols.get(i));
+								IdolDBMSUtilities.showUnitsByIdol(exIdols.get(i));
+								System.out.println("========================================");
+							}
+						}
+						
+						// 멤버가 없으면 멤버 없음 메시지 출력
+						if(!isExistMember) {
+							System.out.println("================================================");
+							System.out.println("  유닛 " + unit.getName() + "의 멤버가 검색되지 않았습니다.");
+							System.out.println("================================================");
+						}
+						
+						System.out.println();
+					} catch(Exception ex) {
+						ex.printStackTrace();
+					}
+					
 					break;
 				case 5:
 					return;

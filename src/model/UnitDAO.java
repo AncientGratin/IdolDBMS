@@ -209,6 +209,71 @@ public class UnitDAO {
 	}
 	
 	/**
+	 * 유닛에 현재 소속되어 있거나 이전에 소속되어 있었던 아이돌 목록 검색
+	 * @param unitId : 유닛 일련번호
+	 * @param belongStatus : 현재 소속 중인지, 이전에 소속되었는지를 식별하기 위한 상수
+	 * @return : 아이돌 리스트
+	 */
+	public ArrayList<IdolDTO> selectIdols(int unitId, int belongStatus) {
+		ArrayList<IdolDTO> idols = new ArrayList<IdolDTO>();
+		
+		if(belongStatus != Constants.BELONG_CURRENT && belongStatus != Constants.BELONG_PAST) {
+			return idols;
+		}
+		
+		String sql = "select * from idol_tb where idol_id in(select idol_id from unit_activity_tb where unit_id="
+				+ unitId + " and leave_date is"
+				+ (belongStatus == Constants.BELONG_CURRENT ? "" : " not") + " null)";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			IdolDAO idolDao = new IdolDAO();
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				IdolDTO idol = idolDao.selectById(rs.getInt(Constants.IDOL_KEY_ID));
+				idols.add(idol);
+			}
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+			idols.clear();
+		} finally {
+			db.close(conn, pstmt, rs);
+		}
+		
+		return idols;
+	}
+	
+	public ArrayList<UnitDTO> selectAll() {
+		ArrayList<UnitDTO> units = new ArrayList<UnitDTO>();
+		String sql = "select * from unit_tb";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				UnitDTO tmpUnit = new UnitDTO(rs.getInt(Constants.UNIT_KEY_ID), rs.getString(Constants.UNIT_KEY_NAME));
+				if(rs.getString(Constants.UNIT_KEY_COMPANY) != null) {
+					tmpUnit.setCompany(rs.getString(Constants.UNIT_KEY_COMPANY));
+				}
+				units.add(tmpUnit);
+			}
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+			units.clear();
+		} finally {
+			db.close(conn, pstmt, rs);
+		}
+		
+		return units;
+	}
+	
+	/**
 	 * 유닛 정보 갱신
 	 * @param unitToUpdate : 갱신할 정보가 저장된 유닛 객체
 	 * @return : 성공여부
