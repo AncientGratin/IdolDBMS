@@ -1,5 +1,13 @@
 package utility;
 
+import java.util.ArrayList;
+
+import model.IdolDAO;
+import model.IdolDTO;
+import model.UnitActivityDAO;
+import model.UnitActivityDTO;
+import model.UnitDAO;
+import model.UnitDTO;
 import resources.Constants;
 
 public class IdolDBMSUtilities {
@@ -329,6 +337,95 @@ public class IdolDBMSUtilities {
 			return Constants.IDOL_KEY_FIRSTPERSON;
 		default:
 			return null;
+		}
+	}
+	
+	/**
+	 * 유닛의 현 멤버(아이돌)들과 이전 멤버들을 출력
+	 * @param unit : 유닛 정보를 담은 객체
+	 */
+	public static void showIdolsByUnit(UnitDTO unit) {
+		if(unit == null)
+			return;
+		
+		IdolDAO idolDao = new IdolDAO();
+		UnitActivityDAO unitActivityDao = new UnitActivityDAO();
+		
+		try {
+			
+			ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_UNIT_ID, unit.getId());
+			
+			if(unitActivities != null) {
+				ArrayList<String> curMembers = new ArrayList<String>();
+				ArrayList<String> exMembers = new ArrayList<String>();
+				
+				for(int i = 0; i < unitActivities.size(); i++) {
+					if(unitActivities.get(i).getLeavedDate() == null) {
+						exMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+					} else {
+						curMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+					}
+				}
+				if(curMembers.size() > 0) {
+					System.out.println("멤버");
+					for(int i = 0; i < curMembers.size(); i++) {
+						System.out.println("  - " + curMembers.get(i));
+					}
+				}
+				if(exMembers.size() > 0) {
+					System.out.println("이전 멤버");
+					for(int i = 0; i < exMembers.size(); i++) {
+						System.out.println("  - " + exMembers.get(i));
+					}
+				}	
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 아이돌이 소속된 유닛 및 이전에 소속되었던 유닛 출력
+	 * @param idol : 아이돌 정보를 담은 객체
+	 */
+	public static void showUnitsByIdol(IdolDTO idol) {
+		if(idol == null)
+			return;
+		
+		UnitDAO unitDao = new UnitDAO();
+		UnitActivityDAO unitActivityDao = new UnitActivityDAO();
+		
+		try {
+			ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_IDOL_ID, idol.getId());
+			
+			if(unitActivities != null) {
+				ArrayList<String> curUnits = new ArrayList<String>();	// 현재 활동 중인 유닛 목록
+				ArrayList<String> exUnits = new ArrayList<String>();	// 이전에 활동했언 유닛 목록
+				
+				for(int i = 0; i < unitActivities.size(); i++) {
+					if(unitActivities.get(i).getLeavedDate() == null) {
+						exUnits.add(unitDao.selectById(unitActivities.get(i).getUnitId()).getName());
+					} else {
+						curUnits.add(unitDao.selectById(unitActivities.get(i).getUnitId()).getName());
+					}
+				}
+				
+				if(curUnits.size() > 0) {
+					System.out.println("활동중인 유닛");
+					for(int i = 0; i < curUnits.size(); i++) {
+						System.out.println("  - " + curUnits.get(i));
+					}
+				}
+				
+				if(exUnits.size() > 0) {
+					System.out.println("이전에 활동했던 유닛");
+					for(int i = 0; i < exUnits.size(); i++) {
+						System.out.println("  - " + exUnits.get(i));
+					}
+				}	
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 }

@@ -69,36 +69,37 @@ public class SearchUnitAction implements Action {
 							System.out.println("================================");
 							System.out.print(unit);
 							
-							// 소속 아이돌 출력 코드(테스트 필요)
-							IdolDAO idolDao = new IdolDAO();
-							UnitActivityDAO unitActivityDao = new UnitActivityDAO();
-							ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_UNIT_ID, unit.getId());
-							
-							if(unitActivities != null) {
-								ArrayList<String> curMembers = new ArrayList<String>();
-								ArrayList<String> exMembers = new ArrayList<String>();
-								
-								for(int i = 0; i < unitActivities.size(); i++) {
-									if(unitActivities.get(i).getLeavedDate() == null) {
-										exMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
-									} else {
-										curMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
-									}
-								}
-								if(curMembers.size() > 0) {
-									System.out.println("멤버");
-									for(int i = 0; i < curMembers.size(); i++) {
-										System.out.println("  - " + curMembers.get(i));
-									}
-								}
-								if(exMembers.size() > 0) {
-									System.out.println("이전 멤버");
-									for(int i = 0; i < exMembers.size(); i++) {
-										System.out.println("  - " + exMembers.get(i));
-									}
-								}
-								
-							}
+//							// 소속 아이돌 출력 코드(테스트 필요)
+//							IdolDAO idolDao = new IdolDAO();
+//							UnitActivityDAO unitActivityDao = new UnitActivityDAO();
+//							ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_UNIT_ID, unit.getId());
+//							
+//							if(unitActivities != null) {
+//								ArrayList<String> curMembers = new ArrayList<String>();
+//								ArrayList<String> exMembers = new ArrayList<String>();
+//								
+//								for(int i = 0; i < unitActivities.size(); i++) {
+//									if(unitActivities.get(i).getLeavedDate() == null) {
+//										exMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+//									} else {
+//										curMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+//									}
+//								}
+//								if(curMembers.size() > 0) {
+//									System.out.println("멤버");
+//									for(int i = 0; i < curMembers.size(); i++) {
+//										System.out.println("  - " + curMembers.get(i));
+//									}
+//								}
+//								if(exMembers.size() > 0) {
+//									System.out.println("이전 멤버");
+//									for(int i = 0; i < exMembers.size(); i++) {
+//										System.out.println("  - " + exMembers.get(i));
+//									}
+//								}
+//								
+//							}
+							IdolDBMSUtilities.showIdolsByUnit(unit);
 							
 							System.out.println("================================\n");
 							
@@ -144,36 +145,38 @@ public class SearchUnitAction implements Action {
 							System.out.println("================================");
 							System.out.print(unit);
 							
-							// 소속 아이돌 출력 코드(테스트 필요)
-							IdolDAO idolDao = new IdolDAO();
-							UnitActivityDAO unitActivityDao = new UnitActivityDAO();
-							ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_UNIT_ID, unit.getId());
+//							// 소속 아이돌 출력 코드(테스트 필요)
+//							IdolDAO idolDao = new IdolDAO();
+//							UnitActivityDAO unitActivityDao = new UnitActivityDAO();
+//							ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_UNIT_ID, unit.getId());
+//							
+//							if(unitActivities != null) {
+//								ArrayList<String> curMembers = new ArrayList<String>();
+//								ArrayList<String> exMembers = new ArrayList<String>();
+//								
+//								for(int i = 0; i < unitActivities.size(); i++) {
+//									if(unitActivities.get(i).getLeavedDate() == null) {
+//										exMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+//									} else {
+//										curMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+//									}
+//								}
+//								if(curMembers.size() > 0) {
+//									System.out.println("멤버");
+//									for(int i = 0; i < curMembers.size(); i++) {
+//										System.out.println("  - " + curMembers.get(i));
+//									}
+//								}
+//								if(exMembers.size() > 0) {
+//									System.out.println("이전 멤버");
+//									for(int i = 0; i < exMembers.size(); i++) {
+//										System.out.println("  - " + exMembers.get(i));
+//									}
+//								}
+//								
+//							}
 							
-							if(unitActivities != null) {
-								ArrayList<String> curMembers = new ArrayList<String>();
-								ArrayList<String> exMembers = new ArrayList<String>();
-								
-								for(int i = 0; i < unitActivities.size(); i++) {
-									if(unitActivities.get(i).getLeavedDate() == null) {
-										exMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
-									} else {
-										curMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
-									}
-								}
-								if(curMembers.size() > 0) {
-									System.out.println("멤버");
-									for(int i = 0; i < curMembers.size(); i++) {
-										System.out.println("  - " + curMembers.get(i));
-									}
-								}
-								if(exMembers.size() > 0) {
-									System.out.println("이전 멤버");
-									for(int i = 0; i < exMembers.size(); i++) {
-										System.out.println("  - " + exMembers.get(i));
-									}
-								}
-								
-							}
+							IdolDBMSUtilities.showIdolsByUnit(unit);
 							
 							System.out.println("================================");
 						}

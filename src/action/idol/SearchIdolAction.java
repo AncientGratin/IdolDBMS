@@ -61,41 +61,46 @@ public class SearchIdolAction implements Action {
 							System.out.println("일련번호가 일치하는 아이돌이 없습니다.\n");
 						}
 						else {
-							UnitDAO unitDao = new UnitDAO();
-							UnitActivityDAO unitActivityDao = new UnitActivityDAO();
-							ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_IDOL_ID, idol.getId());
+							
 							
 							System.out.println("================================");
 							System.out.print(idol);
 							
-							// 유닛 활동 출력(테스트 필요)
-							if(unitActivities != null) {
-								ArrayList<String> curUnits = new ArrayList<String>();	// 현재 활동 중인 유닛 목록
-								ArrayList<String> exUnits = new ArrayList<String>();	// 이전에 활동했언 유닛 목록
-								
-								for(int i = 0; i < unitActivities.size(); i++) {
-									if(unitActivities.get(i).getLeavedDate() == null) {
-										exUnits.add(unitDao.selectById(unitActivities.get(i).getUnitId()).getName());
-									} else {
-										curUnits.add(unitDao.selectById(unitActivities.get(i).getUnitId()).getName());
-									}
-								}
-								
-								if(curUnits.size() > 0) {
-									System.out.println("활동중인 유닛");
-									for(int i = 0; i < curUnits.size(); i++) {
-										System.out.println("  - " + curUnits.get(i));
-									}
-								}
-								
-								if(exUnits.size() > 0) {
-									System.out.println("이전에 활동했던 유닛");
-									for(int i = 0; i < exUnits.size(); i++) {
-										System.out.println("  - " + exUnits.get(i));
-									}
-								}
-								
-							}
+//							// 유닛 활동 출력(테스트 필요)
+//							UnitDAO unitDao = new UnitDAO();
+//							UnitActivityDAO unitActivityDao = new UnitActivityDAO();
+//							ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_IDOL_ID, idol.getId());
+//							
+//							if(unitActivities != null) {
+//								ArrayList<String> curUnits = new ArrayList<String>();	// 현재 활동 중인 유닛 목록
+//								ArrayList<String> exUnits = new ArrayList<String>();	// 이전에 활동했언 유닛 목록
+//								
+//								for(int i = 0; i < unitActivities.size(); i++) {
+//									if(unitActivities.get(i).getLeavedDate() == null) {
+//										exUnits.add(unitDao.selectById(unitActivities.get(i).getUnitId()).getName());
+//									} else {
+//										curUnits.add(unitDao.selectById(unitActivities.get(i).getUnitId()).getName());
+//									}
+//								}
+//								
+//								if(curUnits.size() > 0) {
+//									System.out.println("활동중인 유닛");
+//									for(int i = 0; i < curUnits.size(); i++) {
+//										System.out.println("  - " + curUnits.get(i));
+//									}
+//								}
+//								
+//								if(exUnits.size() > 0) {
+//									System.out.println("이전에 활동했던 유닛");
+//									for(int i = 0; i < exUnits.size(); i++) {
+//										System.out.println("  - " + exUnits.get(i));
+//									}
+//								}
+//								
+//							}
+							
+							IdolDBMSUtilities.showUnitsByIdol(idol);
+							
 							System.out.println("================================\n");
 							// TODO: 나중에 그룹 및 유닛 활동 출력 코드 추가할 것
 						}
@@ -133,7 +138,7 @@ public class SearchIdolAction implements Action {
 							System.out.println("================================");
 							for(int i = 0; i < idols.size(); i++) {
 								System.out.print(idols.get(i));
-								// TODO: 나중에 그룹 및 유닛 활동 출력 코드 추가할 것
+								IdolDBMSUtilities.showUnitsByIdol(idols.get(i));
 								System.out.println("================================");
 							}
 						}
