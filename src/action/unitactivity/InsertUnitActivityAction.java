@@ -2,9 +2,10 @@ package action.unitactivity;
 
 import java.util.Scanner;
 
-import resources.Constants;
-
 import action.Action;
+import model.IdolDAO;
+import model.UnitActivityDAO;
+import resources.Constants;
 import resources.Strings;
 import utility.IdolDBMSUtilities;
 
@@ -138,8 +139,58 @@ public class InsertUnitActivityAction implements Action {
 			}
 		}
 		
-		// DB에 유닛 활동 정보 삽입
-		// 
+		try {
+			// DB에 유닛 활동 정보 삽입
+			UnitActivityDAO dao = new UnitActivityDAO();
+			if(dao.insert(idolId, unitName, joinDate, leaveDate)) {
+				IdolDAO idolDao = new IdolDAO();
+				String idolName = idolDao.selectById(idolId).getName();
+				
+				String joinYear = joinDate.substring(0, 4);
+				String joinMonth = joinDate.substring(5, 7);
+				String joinDayOfMonth = joinDate.substring(8, 10);
+				
+				while(joinYear.charAt(0) == '0') {
+					joinYear = joinYear.substring(1);
+				}
+				if(joinMonth.charAt(0) == '0') {
+					joinMonth = joinMonth.substring(1);
+				}
+				if(joinDayOfMonth.charAt(0) == '0') {
+					joinDayOfMonth = joinDayOfMonth.substring(1);
+				}
+				
+				System.out.println("다음의 유닛 활동내역 정보가 추가되었습니다.");
+				System.out.println("아이돌 " + idolName + "이(가) 유닛" + unitName + "에 " +
+							joinYear + "년 " + joinMonth + "월 " + joinDayOfMonth + "일 가입");
+				
+				if(leaveDate != null) {
+					String leaveYear = leaveDate.substring(0, 4);
+					String leaveMonth = leaveDate.substring(5, 7);
+					String leaveDayOfMonth = leaveDate.substring(8, 10);
+					
+					while(leaveYear.charAt(0) == '0') {
+						leaveYear = leaveYear.substring(1);
+					}
+					if(leaveMonth.charAt(0) == '0') {
+						leaveMonth = leaveMonth.substring(1);
+					}
+					if(leaveDayOfMonth.charAt(0) == '0') {
+						leaveDayOfMonth = leaveDayOfMonth.substring(1);
+					}
+					
+					System.out.println("다음의 유닛 활동내역 정보가 추가되었습니다.");
+					System.out.println("아이돌 " + idolName + "이(가) 유닛" + unitName + "에 " +
+								leaveYear + "년 " + leaveMonth + "월 " + leaveDayOfMonth + "일 가입");
+				}
+			} else {
+				System.out.println("유닛 활동 정보 추가에 실패하였습니다.");
+			}
+			
+			System.out.println();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }

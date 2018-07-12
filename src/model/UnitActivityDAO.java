@@ -16,19 +16,19 @@ public class UnitActivityDAO {
 	Connection conn = null;
 	JdbcUtils db = null;
 	
-	UnitActivityDAO() {
+	public UnitActivityDAO() {
 		db = new JdbcUtils();
 	}
 	
 	/**
 	 * 유닛 활동 테이블에 데이터 추가
 	 * @param idolId : 아이돌 일련번호
-	 * @param unitId : 유닛 일련번호
+	 * @param unitName : 유닛명
 	 * @param joinDate : 가입일
 	 * @param leaveDate : 탈퇴일
 	 * @return : 성공여부
 	 */
-	public boolean insert(int idolId, int unitId, String joinDate, String leaveDate) {
+	public boolean insert(int idolId, String unitName, String joinDate, String leaveDate) {
 		// 필수항목 null값 검사
 		if(joinDate == null)
 			return false;
@@ -41,7 +41,7 @@ public class UnitActivityDAO {
 			conn = db.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idolId);
-			pstmt.setInt(2, unitId);
+			pstmt.setString(2, unitName);
 			pstmt.setString(3, joinDate);
 			if(leaveDate == null) {
 				pstmt.setNull(4, Types.VARCHAR);

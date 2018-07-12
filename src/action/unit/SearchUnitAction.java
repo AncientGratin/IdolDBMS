@@ -1,8 +1,12 @@
 package action.unit;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import action.Action;
+import model.IdolDAO;
+import model.UnitActivityDAO;
+import model.UnitActivityDTO;
 import model.UnitDAO;
 import model.UnitDTO;
 import resources.Constants;
@@ -32,6 +36,7 @@ public class SearchUnitAction implements Action {
 			try {
 				switch(ConsoleViewer.inputMenu(sc, Constants.MENU_ID_SEARCH_IDOL)) {
 				case 1:
+				{
 					while(true) {
 						System.out.print("일련번호 = ");
 						strInput = sc.nextLine();
@@ -63,15 +68,49 @@ public class SearchUnitAction implements Action {
 						else {
 							System.out.println("================================");
 							System.out.print(unit);
+							
+							// 소속 아이돌 출력 코드(테스트 필요)
+							IdolDAO idolDao = new IdolDAO();
+							UnitActivityDAO unitActivityDao = new UnitActivityDAO();
+							ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_UNIT_ID, unit.getId());
+							
+							if(unitActivities != null) {
+								ArrayList<String> curMembers = new ArrayList<String>();
+								ArrayList<String> exMembers = new ArrayList<String>();
+								
+								for(int i = 0; i < unitActivities.size(); i++) {
+									if(unitActivities.get(i).getLeavedDate() == null) {
+										exMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+									} else {
+										curMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+									}
+								}
+								if(curMembers.size() > 0) {
+									System.out.println("멤버");
+									for(int i = 0; i < curMembers.size(); i++) {
+										System.out.println("  - " + curMembers.get(i));
+									}
+								}
+								if(exMembers.size() > 0) {
+									System.out.println("이전 멤버");
+									for(int i = 0; i < exMembers.size(); i++) {
+										System.out.println("  - " + exMembers.get(i));
+									}
+								}
+								
+							}
+							
 							System.out.println("================================\n");
-							// TODO: 나중에 소속 아이돌 출력 코드 추가할 것
+							
 						}
 						
 					} catch(Exception ex) {
 						ex.printStackTrace();
 					}
 					break;
+				}
 				case 2:
+				{
 					while(true) {
 						System.out.print("유닛명 = ");
 						strInput = sc.nextLine();
@@ -104,7 +143,38 @@ public class SearchUnitAction implements Action {
 						else {
 							System.out.println("================================");
 							System.out.print(unit);
-							// TODO: 나중에 소속 아이돌 출력 코드 추가할 것
+							
+							// 소속 아이돌 출력 코드(테스트 필요)
+							IdolDAO idolDao = new IdolDAO();
+							UnitActivityDAO unitActivityDao = new UnitActivityDAO();
+							ArrayList<UnitActivityDTO> unitActivities = unitActivityDao.select(Constants.UNIT_ACTIVITY_KEY_UNIT_ID, unit.getId());
+							
+							if(unitActivities != null) {
+								ArrayList<String> curMembers = new ArrayList<String>();
+								ArrayList<String> exMembers = new ArrayList<String>();
+								
+								for(int i = 0; i < unitActivities.size(); i++) {
+									if(unitActivities.get(i).getLeavedDate() == null) {
+										exMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+									} else {
+										curMembers.add(idolDao.selectById(unitActivities.get(i).getIdolId()).getName());
+									}
+								}
+								if(curMembers.size() > 0) {
+									System.out.println("멤버");
+									for(int i = 0; i < curMembers.size(); i++) {
+										System.out.println("  - " + curMembers.get(i));
+									}
+								}
+								if(exMembers.size() > 0) {
+									System.out.println("이전 멤버");
+									for(int i = 0; i < exMembers.size(); i++) {
+										System.out.println("  - " + exMembers.get(i));
+									}
+								}
+								
+							}
+							
 							System.out.println("================================");
 						}
 						
@@ -114,6 +184,7 @@ public class SearchUnitAction implements Action {
 						ex.printStackTrace();
 					}
 					break;
+				}
 				case 3:
 					System.out.println("이 기능은 개발중입니다.\n");
 					break;

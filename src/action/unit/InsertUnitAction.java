@@ -78,8 +78,10 @@ public class InsertUnitAction implements Action {
 				System.out.println("유닛 " + name + "의 정보가 생성되었습니다.");
 			}
 			else {
-				System.out.println("유닛 정보 추가에 실패하였습니다.\n");
+				System.out.println("유닛 정보 추가에 실패하였습니다.");
 			}
+			
+			System.out.println();
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
