@@ -1,7 +1,7 @@
 package resources;
 
 public class Strings {
-	public static final String ESSENTIAL_INPUT_NOTICE = "(* 표시가 된 것은 필수 입력항목입니다.)";
+	public static final String NOTICE_ESSENTIAL_INPUT = "(* 표시가 된 것은 필수 입력항목입니다.)";
 	public static final String INSERT = "추가";
 	public static final String DELETE = "삭제";
 	public static final String UPDATE = "수정";

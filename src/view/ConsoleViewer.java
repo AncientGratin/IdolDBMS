@@ -84,7 +84,7 @@ public class ConsoleViewer {
 		System.out.println("  2) 그룹");
 		System.out.println("  3) 유닛");
 		
-		if(menuNo == Constants.MAINMENU_NUMBER_SHOWALL) {	// 전체조회일 경우
+		if(menuNo == Constants.MAINMENU_NUMBER_SHOWALL || menuNo == Constants.MAINMENU_NUMBER_SEARCH) {	// 전체조회 또는 검색일 경우
 			System.out.println("  4) 돌아가기");
 		}
 		else {	// 전체조회가 아닐 경우
@@ -189,11 +189,15 @@ public class ConsoleViewer {
 			menu = inputMenu(sc, mainMenuNo + 1);	// 메뉴 식별번호 = 메인 메뉴에서의 메뉴번호 + 1
 			
 			// 돌아가기 체크
-			if(mainMenuNo == Constants.MAINMENU_NUMBER_SHOWALL) {
-				if(menu == Constants.SUBMENU_NUMBER_BACK_ON_SHOWALL) {
-					System.out.println();
-					return;
-				}	
+			if(mainMenuNo == Constants.MAINMENU_NUMBER_SHOWALL &&
+					menu == Constants.SUBMENU_NUMBER_BACK_ON_SHOWALL) {
+				System.out.println();
+				return;
+			}
+			if(mainMenuNo == Constants.MAINMENU_NUMBER_SEARCH &&
+					menu == Constants.SUBMENU_NUMBER_BACK_ON_SEARCH) {
+				System.out.println();
+				return;
 			}	
 			else if(menu == Constants.SUBMENU_NUMBER_BACK) {
 				System.out.println();

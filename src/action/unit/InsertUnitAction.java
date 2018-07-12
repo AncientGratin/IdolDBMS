@@ -17,7 +17,7 @@ public class InsertUnitAction implements Action {
 		System.out.println("\n-------------");
 		System.out.println("  유닛 추가");
 		System.out.println("-------------");
-		System.out.println(Strings.ESSENTIAL_INPUT_NOTICE);
+		System.out.println(Strings.NOTICE_ESSENTIAL_INPUT);
 		
 		while(true) {
 			System.out.print("*유닛명 = ");

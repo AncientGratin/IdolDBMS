@@ -61,7 +61,7 @@ public class Constants {
 	public static final int MAX_INSERT_MENU = 6;
 	public static final int MAX_DELETE_MENU = 6;
 	public static final int MAX_UPDATE_MENU = 6;
-	public static final int MAX_SEARCH_MENU = 6;
+	public static final int MAX_SEARCH_MENU = 4;
 	public static final int MAX_SHOWALL_MENU = 4;
 	public static final int MAX_SEARCH_IDOL_MENU = 5;
 	public static final int MAX_SEARCH_UNIT_MENU = 4;
@@ -74,6 +74,7 @@ public class Constants {
 	public static final int SUBMENU_NUMBER_UNIT_ACTIVITY = 5;
 	public static final int SUBMENU_NUMBER_BACK = 6;
 	public static final int SUBMENU_NUMBER_BACK_ON_SHOWALL = 4;
+	public static final int SUBMENU_NUMBER_BACK_ON_SEARCH = 4;
 	
 	// 프로그램상에서의 속성값 개수
 	public static final int IDOL_ATTRIBUTE_NUM = 22;

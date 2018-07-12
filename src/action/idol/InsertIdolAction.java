@@ -22,7 +22,7 @@ public class InsertIdolAction implements Action {
 		System.out.println("\n---------------");
 		System.out.println("  아이돌 추가");
 		System.out.println("---------------");
-		System.out.println(Strings.ESSENTIAL_INPUT_NOTICE);
+		System.out.println(Strings.NOTICE_ESSENTIAL_INPUT);
 		
 		// 이름 입력
 		while(true) {
