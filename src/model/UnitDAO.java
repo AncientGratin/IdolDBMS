@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 
 import db.JdbcUtils;
@@ -26,7 +27,7 @@ public class UnitDAO {
 	 */
 	public boolean insertUnit(String name, String company) {
 		// 인수로 받은 유닛 정보가 null값이거나 not null 속성값이 누락되어 있으면 데이터 추가 실패
-		if(name == null || company == null)
+		if(name == null)
 			return false;
 		
 		int result = 0;
@@ -38,7 +39,12 @@ public class UnitDAO {
 			conn = db.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
-			pstmt.setString(2, company);
+			if(company != null) {
+				pstmt.setString(2, company);
+			}
+			else {
+				pstmt.setNull(2, Types.VARCHAR);
+			}
 			result = pstmt.executeUpdate();
 			db.commit(conn);
 		} catch(Exception ex) {
