@@ -258,4 +258,34 @@ create sequence group_activity_seq
 /* 그룹 활동 테이블 전체 보기 */
 select * from group_activity_tb;
 
-/* 57 */
+/* 임의의 그룹 활동 데이터 추가 */
+insert into group_activity_tb values(
+	group_activity_seq.nextval,
+	(select idol_id from idol_tb where idol_name='코사카 호노카'),
+	(select group_id from group_tb where group_name='μ`s'),
+	(select to_date('2010-06-30', 'YYYY-MM-DD') from dual),
+	null
+);
+insert into group_activity_tb values(
+	group_activity_seq.nextval,
+	(select idol_id from idol_tb where idol_name='아야세 에리'),
+	(select group_id from group_tb where group_name='μ`s'),
+	(select to_date('2010-06-30', 'YYYY-MM-DD') from dual),
+	null
+);
+insert into group_activity_tb values(
+	group_activity_seq.nextval,
+	(select idol_id from idol_tb where idol_name='미나미 코토리'),
+	(select group_id from group_tb where group_name='μ`s'),
+	(select to_date('2010-06-30', 'YYYY-MM-DD') from dual),
+	null
+);
+insert into group_activity_tb values(
+	group_activity_seq.nextval,
+	(select idol_id from idol_tb where idol_name='소노다 우미'),
+	(select group_id from group_tb where group_name='μ`s'),
+	(select to_date('2010-06-30', 'YYYY-MM-DD') from dual),
+	null
+);
+
+/* 61 */
