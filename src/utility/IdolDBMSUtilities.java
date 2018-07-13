@@ -2,6 +2,10 @@ package utility;
 
 import java.util.ArrayList;
 
+import model.GroupActivityDAO;
+import model.GroupActivityDTO;
+import model.GroupDAO;
+import model.GroupDTO;
 import model.IdolDAO;
 import model.IdolDTO;
 import model.UnitActivityDAO;
@@ -284,6 +288,94 @@ public class IdolDBMSUtilities {
 		}
 	}
 	
+	public static boolean checkGroupAttributes(String key, Object value) {
+		switch(key) {
+		case Constants.GROUP_KEY_ID:
+			if(!(value instanceof Integer)) {
+				return false;
+			}
+			return (Integer)value > 0 && (Integer)value < 1000001;
+		case Constants.GROUP_KEY_NAME:
+		case Constants.GROUP_KEY_COMPANY:
+			if(!(value instanceof String)) {
+				return false;
+			}
+			return IdolDBMSUtilities.byteLength((String)value) > 0 && 
+					IdolDBMSUtilities.byteLength((String)value) < 21;
+		default:
+			return false;
+		}
+	}
+	
+	public static boolean checkGroupActivityAttributes(String key, Object value) {
+		switch(key) {
+		case Constants.GROUP_ACTIVITY_KEY_ID:
+		case Constants.GROUP_ACTIVITY_KEY_IDOL_ID:
+		case Constants.GROUP_ACTIVITY_KEY_GROUP_ID:
+			if(!(value instanceof Integer)) {
+				return false;
+			}
+			return (Integer)value > 0 && (Integer)value < 1000001;
+		case Constants.GROUP_ACTIVITY_KEY_JOIN_DATE:
+		case Constants.GROUP_ACTIVITY_KEY_LEAVE_DATE:
+			
+			// 가입일은 null값 불허
+			if(key.equals(Constants.GROUP_ACTIVITY_KEY_JOIN_DATE) && value == null) {
+				return false;
+			}
+			
+			// 날짜의 입력은 문자열로 받는다.
+			if(!(value instanceof String)) {
+				return false;
+			}
+			String[] tmpStrings = ((String)value).split("-");
+			if(tmpStrings.length != 3) {
+				return false;
+			}
+			int year = 0;
+			int month = 0;
+			int date = 0;
+			try {
+				year = Integer.parseInt(tmpStrings[0]);
+				month = Integer.parseInt(tmpStrings[1]);
+				date = Integer.parseInt(tmpStrings[2]);	
+			} catch(NumberFormatException ex) {
+				ex.printStackTrace();
+				return false;
+			}
+			
+			if(month < 1 || month > 12) {
+				return false;
+			}
+			switch(month) {
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				return date > 0 && date < 32;
+			case 2:
+				if(year % 4 == 0 && year % 100 != 0) {
+					return date > 0 && date < 30;
+				}
+				else {
+					return date > 0 && date < 29;
+				}
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				return date > 0 && date < 31;
+			default:
+				return false;
+			}
+		default:
+			return false;
+		}
+	}
+	
 	/**
 	 * 프로그램상의 아이돌 속성 인덱스 번호를 속성 키 문자열로 변환
 	 * @param index
@@ -426,6 +518,111 @@ public class IdolDBMSUtilities {
 		try {
 			ArrayList<IdolDTO> curIdols = dao.selectIdols(unitId, Constants.BELONG_CURRENT);
 			ArrayList<IdolDTO> exIdols = dao.selectIdols(unitId, Constants.BELONG_PAST);
+			
+			if(curIdols != null && curIdols.size() > 0) {
+				System.out.println("멤버");
+				for(int i = 0; i < curIdols.size(); i++) {
+					System.out.println("  - " + curIdols.get(i).getName());
+				}
+			}
+			
+			if(exIdols != null && exIdols.size() > 0) {
+				System.out.println("이전 멤버");
+				for(int i = 0; i < exIdols.size(); i++) {
+					System.out.println("  - " + exIdols.get(i).getName());
+				}
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 그룹의 현 멤버(아이돌)들과 이전 멤버들을 출력
+	 * @param group : 그룹 정보를 담은 객체
+	 */
+	public static void showIdolsByGroup(GroupDTO group) {
+		if(group == null)
+			return;
+		
+		IdolDAO idolDao = new IdolDAO();
+		GroupActivityDAO groupActivityDao = new GroupActivityDAO();
+		
+		try {
+			
+			ArrayList<GroupActivityDTO> groupActivities = groupActivityDao.select(Constants.GROUP_ACTIVITY_KEY_GROUP_ID, group.getId());
+			
+			if(groupActivities != null) {
+				ArrayList<String> curMembers = new ArrayList<String>();
+				ArrayList<String> exMembers = new ArrayList<String>();
+				
+				for(int i = 0; i < groupActivities.size(); i++) {
+					if(groupActivities.get(i).getLeavedDate() == null) {
+						exMembers.add(idolDao.selectById(groupActivities.get(i).getIdolId()).getName());
+					} else {
+						curMembers.add(idolDao.selectById(groupActivities.get(i).getIdolId()).getName());
+					}
+				}
+				if(curMembers.size() > 0) {
+					System.out.println("멤버");
+					for(int i = 0; i < curMembers.size(); i++) {
+						System.out.println("  - " + curMembers.get(i));
+					}
+				}
+				if(exMembers.size() > 0) {
+					System.out.println("이전 멤버");
+					for(int i = 0; i < exMembers.size(); i++) {
+						System.out.println("  - " + exMembers.get(i));
+					}
+				}	
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 아이돌이 소속된 그룹 및 이전에 소속되었던 그룹 출력
+	 * @param idol : 아이돌 정보를 담은 객체
+	 */
+	public static void showGroupsByIdol(IdolDTO idol) {
+		if(idol == null)
+			return;
+		
+		IdolDAO dao = new IdolDAO();
+		
+		try {
+			ArrayList<GroupDTO> curgroups = dao.selectGroups(idol.getId(), Constants.BELONG_CURRENT);
+			ArrayList<GroupDTO> exgroups = dao.selectGroups(idol.getId(), Constants.BELONG_PAST);
+			
+			if(curgroups != null && curgroups.size() > 0) {
+				System.out.println("활동중인 그룹");
+				for(int i = 0; i < curgroups.size(); i++) {
+					System.out.println("  - " + curgroups.get(i).getName());
+				}
+			}
+			
+			if(exgroups != null && exgroups.size() > 0) {
+				System.out.println("이전에 활동했던 그룹");
+				for(int i = 0; i < exgroups.size(); i++) {
+					System.out.println("  - " + exgroups.get(i).getName());
+				}
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 그룹의 현 멤버 및 이전 멤버 출력
+	 * @param groupId : 그룹 일련번호
+	 */
+	public static void showIdolsBygroup(int groupId) {
+		GroupDAO dao = new GroupDAO();
+		
+		try {
+			ArrayList<IdolDTO> curIdols = dao.selectIdols(groupId, Constants.BELONG_CURRENT);
+			ArrayList<IdolDTO> exIdols = dao.selectIdols(groupId, Constants.BELONG_PAST);
 			
 			if(curIdols != null && curIdols.size() > 0) {
 				System.out.println("멤버");

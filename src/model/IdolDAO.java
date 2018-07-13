@@ -214,6 +214,47 @@ public class IdolDAO {
 	}
 	
 	/**
+	 * 아이돌이 현재 활동 중이거나 이전에 활동 중이었던 그룹 목록 검색
+	 * @param idolId : 아이돌 일련번호
+	 * @param belongStatus : 현재 소속 중인지, 이전에 소속되었는지를 식별하는 상수
+	 * @return : 그룹 리스트
+	 */
+	public ArrayList<GroupDTO> selectGroups(int idolId, int belongStatus) {
+		ArrayList<GroupDTO> groups = new ArrayList<GroupDTO>();
+		
+		if(belongStatus != Constants.BELONG_CURRENT && belongStatus != Constants.BELONG_PAST) {
+			return groups;
+		}
+		
+		String sql = "select * from group_tb where group_id in(select group_id from group_activity_tb where idol_id=" 
+				+ idolId + " and leave_date is" 
+				+ (belongStatus == Constants.BELONG_CURRENT ? "" : " not") + " null)";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String groupName = rs.getString(Constants.GROUP_KEY_NAME);
+				GroupDTO group = new GroupDTO(rs.getInt(Constants.GROUP_KEY_ID), rs.getString(Constants.GROUP_KEY_NAME));
+				if(rs.getString(Constants.GROUP_KEY_COMPANY) != null) {
+					group.setCompany(rs.getString(Constants.GROUP_KEY_COMPANY));
+				}
+				groups.add(group);
+			}
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+			groups.clear();
+		} finally {
+			db.close(conn, pstmt, rs);
+		}
+		
+		return groups;
+	}
+	
+	/**
 	 * 아이돌 전체 목록 가져오기
 	 * @return : 아이돌 ArrayList
 	 */

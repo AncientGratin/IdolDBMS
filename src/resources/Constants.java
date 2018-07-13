@@ -43,6 +43,18 @@ public class Constants {
 	public static final String UNIT_ACTIVITY_KEY_JOIN_DATE = "join_date";
 	public static final String UNIT_ACTIVITY_KEY_LEAVE_DATE = "leave_date";
 	
+	//
+	public static final String GROUP_KEY_ID = "group_id";
+	public static final String GROUP_KEY_NAME = "group_name";
+	public static final String GROUP_KEY_COMPANY = "company";
+	
+	//
+	public static final String GROUP_ACTIVITY_KEY_ID = "id";
+	public static final String GROUP_ACTIVITY_KEY_IDOL_ID = "idol_id";
+	public static final String GROUP_ACTIVITY_KEY_GROUP_ID = "group_id";
+	public static final String GROUP_ACTIVITY_KEY_JOIN_DATE = "join_date";
+	public static final String GROUP_ACTIVITY_KEY_LEAVE_DATE = "leave_date";
+	
 	// 메인 메뉴에서의 메뉴 이름
 	public static final String MAINMENU_NAME_INSERT = "데이터 추가";
 	public static final String MAINMENU_NAME_DELETE = "데이터 삭제";

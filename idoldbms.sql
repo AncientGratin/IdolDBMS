@@ -239,8 +239,8 @@ select * from group_tb;
 /* 그룹 활동 테이블 생성 */
 create table group_activity_tb(
 	id number(7) primary key,
-	idol_id number(7) constraint idol_id_fk references idol_tb,
-	group_id number(7) constraint group_id_fk references group_tb,
+	idol_id number(7) constraint idol_id_group_activity_fk references idol_tb,
+	group_id number(7) constraint group_id_group_activity_fk references group_tb,
 	join_date date not null,
 	leave_date date
 );

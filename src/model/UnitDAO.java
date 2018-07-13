@@ -34,12 +34,15 @@ public class UnitDAO {
 		PreparedStatement pstmt = null;
 		
 //		String sql = "insert into unit_tb values(unit_seq.nextval, ?, ?)";
-		String sql = "insert into unit_tb values(unit_seq.nextval, ?, ";
+		String sql = "insert into unit_tb (unit_id,unit_name,company) values(unit_seq.nextval, ";
 		
 		try {
 			conn = db.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
+			
+			sql += "'" + name + "', ";
+			
+			
+			//pstmt.setString(1, name);
 			if(company != null) {
 //				pstmt.setString(2, company);
 				sql += "'" + company + "')";
@@ -48,6 +51,7 @@ public class UnitDAO {
 //				pstmt.setNull(2, Types.VARCHAR);
 				sql += "null)";
 			}
+			pstmt = conn.prepareStatement(sql);
 			result = pstmt.executeUpdate();
 			db.commit(conn);
 		} catch(Exception ex) {
